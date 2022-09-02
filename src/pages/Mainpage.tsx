@@ -1,10 +1,11 @@
 import React from "react";
+import CommonNavbar from "../components/CommonNavbar";
 
 function Mainpage() {
   return (
-    //실제 화면에 출력할 내용들 설정 해주는 곳
     <div>
-      <p>mainPage테스트</p>
+      <CommonNavbar />
+      <div>메인 페이지 내용</div>
     </div>
   );
 }
