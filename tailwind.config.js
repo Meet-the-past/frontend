@@ -6,8 +6,11 @@ module.exports = {
         navbarColor: "#561D1D",
         navbarColorToggle: "#C98474",
         white: "#ffffff",
+        mainPageBackground: "#A68F66",
       },
     },
   },
   plugins: [],
 };
+
+
