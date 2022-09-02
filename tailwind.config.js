@@ -1,7 +1,16 @@
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        navbarColor: "#561D1D",
+        navbarColorToggle: "#C98474",
+        white: "#ffffff",
+        mainPageBackground: "#A68F66",
+      },
+    },
   },
   plugins: [],
 };
+
+
