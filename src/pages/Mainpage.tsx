@@ -8,7 +8,7 @@ function Mainpage() {
       <CommonNavbar />
       <div>
         <img
-          className="w-full h-44"
+          className="w-full h-62"
           src="/assets/images/banner.png"
           alt="banner"
         />

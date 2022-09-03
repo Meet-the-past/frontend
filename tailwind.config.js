@@ -7,10 +7,9 @@ module.exports = {
         navbarColorToggle: "#C98474",
         white: "#ffffff",
         mainPageBackground: "#A68F66",
+        formBoxColor: "#B49C72",
       },
     },
   },
   plugins: [],
 };
-
-
