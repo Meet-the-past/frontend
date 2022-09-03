@@ -7,19 +7,21 @@ function Mainpage() {
     <div>
       <CommonNavbar />
       <div>
-        <img
-          className="w-full h-62"
-          src="/assets/images/banner.png"
-          alt="banner"
-        />
-      </div>
+        <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
+          <div className="m-auto">
+            <img
+              className="rounded-xl w-4/5 m-auto"
+              src="/assets/images/banner.png"
+              alt="banner"
+            />
 
-      <div className="flex bg-[url('../public/assets/images/background-1.png')] w-full h-52">
-        <div className="m-auto">
-          <h1 className="text-center text-4xl font-bold text-white drop-shadow-md">
-            Meet The Past
-          </h1>
-          <p className="text-center ">찢기고 구겨진 추억을 되살려드립니다</p>
+            <div className="text-center">
+              <h1 className="text-6xl font-serif font-light text-textColor drop-shadow-md my-5">
+                Meet The Past
+              </h1>
+              <p>찢기고 구겨진 추억을 되살려드립니다</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -34,8 +36,8 @@ function Mainpage() {
               />
             </div>
 
-            <div className="pl-10 float-right w-60 m-auto ">
-              <p className="mt-20 text-xl font-bold text-white">
+            <div className="pl-10 float-right w-80 m-auto ">
+              <p className="mt-20 text-xl font-bold text-textColor">
                 보기만 해도 <br></br> 가슴이 아리는 사진이 있습니까?
               </p>
               <p className="mt-5 mx-auto ">
@@ -57,8 +59,8 @@ function Mainpage() {
               />
             </div>
 
-            <div className="pl-10 float-left w-60 m-auto ">
-              <p className="mt-20 text-xl font-bold text-white">
+            <div className="pl-10 float-left w-80 m-auto ">
+              <p className="mt-20 text-xl font-bold text-textColor">
                 누군가의 기억과 가까운 모습으로 <br></br>
                 추억을 되살려드리겠습니다
               </p>

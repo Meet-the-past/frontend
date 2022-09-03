@@ -3,9 +3,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navbarColor: "#561D1D",
-        navbarColorToggle: "#C98474",
-        white: "#ffffff",
+        navbarColor: "#B49C72",
+        textColor: "#6A5B3D",
+        navbarColorToggle: "#FFD8A9",
         mainPageBackground: "#A68F66",
         formBoxColor: "#B49C72",
       },

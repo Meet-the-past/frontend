@@ -6,7 +6,7 @@ function CommonNavbar() {
 
   return (
     <div>
-      <nav className="bg-navbarColor">
+      <nav className="bg-navbarColor opacity=80">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between">
             {/* MTP메인 화면 */}
