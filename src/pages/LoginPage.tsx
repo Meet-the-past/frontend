@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import { Link } from "react-router-dom";
 import InputBox from "../components/InputBox";
+import FormButton from "../components/FormButton";
 
 function LoginPage() {
   const [userInfo, setUserInfo] = useState({
@@ -38,13 +39,9 @@ function LoginPage() {
             type="password"
           />
 
-          <div className="mt-5 w-full items-center text-center relative flex justify-center align-middle rounded-full">
-            <button className="w-3/5 h-12 border-black border-2  bg-gray-600 hover:bg-gray-400 text-white font-bold  rounded-full">
-              로그인
-            </button>
-          </div>
+          <FormButton text="로그인" height="h-12" width="w-3/5" color="gray" />
 
-          <p className="mt-16 text-center text-xl font-bold text-textColor">
+          <p className="mt-10 text-center text-xl font-bold text-textColor">
             <span>Not a member yet?</span>
             <Link to="/register">
               <span className="text-blue-800 hover:text-blue-500">
