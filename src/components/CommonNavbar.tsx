@@ -25,7 +25,7 @@ function CommonNavbar() {
                 <span className=" text-white">로그인</span>
               </Link>
 
-              <Link className="" to="/sign-up">
+              <Link className="" to="/register">
                 <span className=" text-white">회원가입</span>
               </Link>
             </div>
