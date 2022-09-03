@@ -156,7 +156,7 @@ function Mainpage() {
               과거를 만나보시겠습니까?
             </h1>
             <div className="mt-5 flex items-center justify-center">
-              <Link to="/">
+              <Link to="/upload">
                 <button className=" opacity-70 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full">
                   만나러가기
                 </button>
