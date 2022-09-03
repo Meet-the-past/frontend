@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Mainpage() {
   return (
-    <div className="bg-mainPageBackground">
+    <div>
       <CommonNavbar />
       <div>
         <img
