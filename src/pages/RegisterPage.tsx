@@ -10,7 +10,7 @@ function RegisterPage() {
     email: "",
     userName: "",
     password: "",
-    checkPassword: "",
+    passwordConfirm: "",
   });
 
   //출력할 오류 메세지
@@ -18,6 +18,7 @@ function RegisterPage() {
   const [passwordMessage, setPasswordMessage] = useState<string>("");
   const [passwordConfirmMessage, setPasswordConfirmMessage] =
     useState<string>("");
+  const [userNameMesssage, setUserNameMesssage] = useState<string>("");
 
   //정규식
   const EMAIL_REGEX =
@@ -26,25 +27,63 @@ function RegisterPage() {
 
   // 유효성 검사
   const [validEmail, setValidEmail] = useState<boolean>(false);
+  const [validUserName, setValidUserName] = useState<boolean>(false);
   const [validPassword, setValidPassword] = useState<boolean>(false);
   const [validPasswrodConfirm, setValidPasswrodConfirm] =
     useState<boolean>(false);
 
-  useEffect(() => {
+  const checkEmail = () => {
     if (userInfo.email === "") {
       setValidEmail(false);
-      setEmailMessage("필수 정보 입니다.");
+      setEmailMessage("필수 정보입니다.");
     } else {
       setValidEmail(EMAIL_REGEX.test(userInfo.email));
-      console.log(validEmail);
-      console.log(userInfo.email);
       if (!validEmail) {
-        setEmailMessage("이메일 형식이 적합하지 않습니다.");
+        setEmailMessage("이메일 형식이 유효하지 않습니다.");
       } else {
         setEmailMessage("사용 가능한 이메일입니다.");
       }
     }
-  }, [userInfo.email]);
+  };
+
+  const checkUserName = () => {
+    if (userInfo.userName === "") {
+      setValidUserName(false);
+      setUserNameMesssage("필수 정보입니다.");
+    } else {
+      setValidUserName(true);
+    }
+  };
+
+  const checkPassword = () => {
+    if (userInfo.password === "") {
+      setValidPassword(false);
+      setPasswordMessage("필수 정보입니다.");
+    } else {
+      setValidPassword(PWD_REGEX.test(userInfo.password));
+      if (!validPassword) {
+        setPasswordMessage(
+          "8-24자 영문 대 소문자, 숫자, 특수문자를 사용하세요"
+        );
+      } else {
+        setPasswordMessage("사용 가능한 비밀번호 입니다.");
+      }
+    }
+  };
+
+  const checkPasswordConfirm = () => {
+    if (userInfo.passwordConfirm === "") {
+      setValidPasswrodConfirm(false);
+      setPasswordConfirmMessage("필수 정보입니다.");
+    } else {
+      setValidPasswrodConfirm(userInfo.password === userInfo.passwordConfirm);
+      if (!validPasswrodConfirm) {
+        setPasswordConfirmMessage("비밀번호가 일치하지 않습니다.");
+      } else {
+        setPasswordConfirmMessage("");
+      }
+    }
+  };
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -68,6 +107,7 @@ function RegisterPage() {
             icon="/assets/images/people-Icon.png"
             message={emailMessage}
             isValid={validEmail}
+            blurEvnet={checkEmail}
           />
 
           <InputBox
@@ -75,6 +115,9 @@ function RegisterPage() {
             onChange={handleChange}
             placeholder="userName"
             icon="/assets/images/people-Icon.png"
+            message={userNameMesssage}
+            isValid={validUserName}
+            blurEvnet={checkUserName}
           />
 
           <InputBox
@@ -83,14 +126,20 @@ function RegisterPage() {
             placeholder="password"
             icon="/assets/images/password-Icon.png"
             type="password"
+            message={passwordMessage}
+            isValid={validPassword}
+            blurEvnet={checkPassword}
           />
 
           <InputBox
-            text={userInfo.checkPassword}
+            text={userInfo.passwordConfirm}
             onChange={handleChange}
-            placeholder="checkPassword"
+            placeholder="passwordConfirm"
             icon="/assets/images/password-Icon2.png"
             type="password"
+            message={passwordConfirmMessage}
+            isValid={validPasswrodConfirm}
+            blurEvnet={checkPasswordConfirm}
           />
 
           <FormButton

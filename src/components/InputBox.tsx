@@ -9,6 +9,7 @@ interface InputBoxProps {
   type?: string;
   message?: string;
   isValid?: boolean;
+  blurEvnet?: any;
 }
 
 export default function InputBox({
@@ -19,6 +20,7 @@ export default function InputBox({
   type = "text",
   message = "",
   isValid = false,
+  blurEvnet = () => {},
 }: InputBoxProps) {
   const [value, setValue] = useState(text);
 
@@ -42,6 +44,7 @@ export default function InputBox({
           placeholder={placeholder}
           value={value}
           onChange={handleTextChange}
+          onBlur={blurEvnet}
         />
       </div>
       {message !== "" && (
