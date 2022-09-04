@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import { Link } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import FormButton from "../components/FormButton";
+import FormAlertMessage from "../components/FormAlertMessage";
 
 function RegisterPage() {
   const [userInfo, setUserInfo] = useState({
@@ -11,6 +12,39 @@ function RegisterPage() {
     password: "",
     checkPassword: "",
   });
+
+  //출력할 오류 메세지
+  const [emailMessage, setEmailMessage] = useState<string>("");
+  const [passwordMessage, setPasswordMessage] = useState<string>("");
+  const [passwordConfirmMessage, setPasswordConfirmMessage] =
+    useState<string>("");
+
+  //정규식
+  const EMAIL_REGEX =
+    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
+  // 유효성 검사
+  const [validEmail, setValidEmail] = useState<boolean>(false);
+  const [validPassword, setValidPassword] = useState<boolean>(false);
+  const [validPasswrodConfirm, setValidPasswrodConfirm] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    if (userInfo.email === "") {
+      setValidEmail(false);
+      setEmailMessage("필수 정보 입니다.");
+    } else {
+      setValidEmail(EMAIL_REGEX.test(userInfo.email));
+      console.log(validEmail);
+      console.log(userInfo.email);
+      if (!validEmail) {
+        setEmailMessage("이메일 형식이 적합하지 않습니다.");
+      } else {
+        setEmailMessage("사용 가능한 이메일입니다.");
+      }
+    }
+  }, [userInfo.email]);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -30,14 +64,16 @@ function RegisterPage() {
           <InputBox
             text={userInfo.email}
             onChange={handleChange}
-            placeholder="E-mail"
+            placeholder="email"
             icon="/assets/images/people-Icon.png"
+            message={emailMessage}
+            isValid={validEmail}
           />
 
           <InputBox
             text={userInfo.userName}
             onChange={handleChange}
-            placeholder="Name"
+            placeholder="userName"
             icon="/assets/images/people-Icon.png"
           />
 
@@ -52,7 +88,7 @@ function RegisterPage() {
           <InputBox
             text={userInfo.checkPassword}
             onChange={handleChange}
-            placeholder="Conform Password"
+            placeholder="checkPassword"
             icon="/assets/images/password-Icon2.png"
             type="password"
           />
