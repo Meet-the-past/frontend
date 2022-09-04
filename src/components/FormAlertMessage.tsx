@@ -11,8 +11,8 @@ export default function FormAlertMessage({
   isValid,
 }: FormAlertMessageProps) {
   return (
-    <div className="object-left justify-left items-left">
-      <span className={isValid ? "text-green-800" : "text-red-800"}>
+    <div className="justify-left text-sm items-left">
+      <span className={isValid ? "text-green-800 " : "text-red-800"}>
         {message}
       </span>
     </div>

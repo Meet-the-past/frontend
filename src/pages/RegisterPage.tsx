@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import { Link } from "react-router-dom";
 import InputBox from "../components/InputBox";
 import FormButton from "../components/FormButton";
-import FormAlertMessage from "../components/FormAlertMessage";
 
 function RegisterPage() {
   const [userInfo, setUserInfo] = useState({
@@ -37,11 +36,12 @@ function RegisterPage() {
       setValidEmail(false);
       setEmailMessage("필수 정보입니다.");
     } else {
-      setValidEmail(EMAIL_REGEX.test(userInfo.email));
-      if (!validEmail) {
+      if (!EMAIL_REGEX.test(userInfo.email)) {
         setEmailMessage("이메일 형식이 유효하지 않습니다.");
+        setValidEmail(false);
       } else {
         setEmailMessage("사용 가능한 이메일입니다.");
+        setValidEmail(true);
       }
     }
   };
@@ -52,6 +52,7 @@ function RegisterPage() {
       setUserNameMesssage("필수 정보입니다.");
     } else {
       setValidUserName(true);
+      setUserNameMesssage("");
     }
   };
 
@@ -60,13 +61,14 @@ function RegisterPage() {
       setValidPassword(false);
       setPasswordMessage("필수 정보입니다.");
     } else {
-      setValidPassword(PWD_REGEX.test(userInfo.password));
-      if (!validPassword) {
+      if (!PWD_REGEX.test(userInfo.password)) {
         setPasswordMessage(
           "8-24자 영문 대 소문자, 숫자, 특수문자를 사용하세요"
         );
+        setValidPassword(false);
       } else {
         setPasswordMessage("사용 가능한 비밀번호 입니다.");
+        setValidPassword(true);
       }
     }
   };
@@ -76,11 +78,12 @@ function RegisterPage() {
       setValidPasswrodConfirm(false);
       setPasswordConfirmMessage("필수 정보입니다.");
     } else {
-      setValidPasswrodConfirm(userInfo.password === userInfo.passwordConfirm);
-      if (!validPasswrodConfirm) {
+      if (userInfo.password !== userInfo.passwordConfirm) {
         setPasswordConfirmMessage("비밀번호가 일치하지 않습니다.");
+        setValidPasswrodConfirm(false);
       } else {
         setPasswordConfirmMessage("");
+        setValidPasswrodConfirm(true);
       }
     }
   };
