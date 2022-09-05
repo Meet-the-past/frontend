@@ -94,11 +94,11 @@ function RegisterPage() {
   };
 
   return (
-    <div className="bg-[url('../public/assets/images/background-1.png')] w-full">
+    <div className="bg-[url('../public/assets/images/background-1.png')]">
       <CommonNavbar />
 
-      <div className="flex justify-center items-center w-full h-screen">
-        <div className="shadow-lg w-4/5 h-3/4 rounded-3xl bg-white opacity-80">
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="shadow-lg w-4/5 h-3/4 rounded-3xl bg-white opacity-80 m-16">
           <h1 className="mt-20 text-center text-4xl font-bold text-textColor">
             회원 가입
           </h1>
@@ -152,7 +152,7 @@ function RegisterPage() {
             color="gray"
           />
 
-          <p className="mt-10 text-center text-xl font-bold text-textColor">
+          <p className="mt-10 mb-10 text-center text-xl font-bold text-textColor">
             <span>Already have account?</span>
             <Link to="/login">
               <span className="text-blue-800 hover:text-blue-500"> Login!</span>
