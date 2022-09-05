@@ -10,13 +10,13 @@ function Mainpage() {
         <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
           <div className="m-auto">
             <img
-              className="rounded-xl w-4/5 m-auto"
+              className="rounded-xl w-11/12 m-auto"
               src="/assets/images/banner.png"
               alt="banner"
             />
 
             <div className="text-center">
-              <h1 className="text-6xl font-serif font-light text-textColor drop-shadow-md my-5">
+              <h1 className="sm:text-6xl text-4xl font-serif font-light text-textColor drop-shadow-md my-5">
                 Meet The Past
               </h1>
               <p>찢기고 구겨진 추억을 되살려드립니다</p>
@@ -28,7 +28,7 @@ function Mainpage() {
       <div className="w-full bg-[url('../public/assets/images/background-2.png')]">
         <div className="grid h-screen place-items-center">
           <div>
-            <div className="float-left">
+            <div className="float-center sm:float-left">
               <img
                 className="h-96 "
                 src="/assets/images/mainPage_people1.png"
@@ -36,7 +36,7 @@ function Mainpage() {
               />
             </div>
 
-            <div className="pl-10 float-right w-80 m-auto ">
+            <div className="pl-10 float-center sm:float-right w-80 m-auto ">
               <p className="mt-20 text-xl font-bold text-textColor">
                 보기만 해도 <br></br> 가슴이 아리는 사진이 있습니까?
               </p>
@@ -51,7 +51,7 @@ function Mainpage() {
 
         <div className="grid place-items-center">
           <div>
-            <div className="float-right ml-5">
+            <div className="float-center sm:float-right ml-5">
               <img
                 className="h-96 "
                 src="/assets/images/mainPage_people2.png"
@@ -59,7 +59,7 @@ function Mainpage() {
               />
             </div>
 
-            <div className="pl-10 float-left w-80 m-auto ">
+            <div className="pl-10 float-center sm:float-left w-80 m-auto ">
               <p className="mt-20 text-xl font-bold text-textColor">
                 누군가의 기억과 가까운 모습으로 <br></br>
                 추억을 되살려드리겠습니다
