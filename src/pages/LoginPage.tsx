@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import { Link } from "react-router-dom";
-import InputBox from "../components/InputBox";
+import FormInputBox from "../components/FormInputBox";
 import FormButton from "../components/FormButton";
 
 function LoginPage() {
@@ -25,13 +25,13 @@ function LoginPage() {
             로그인
           </h1>
 
-          <InputBox
+          <FormInputBox
             text={userInfo.email}
             onChange={handleChange}
             placeholder="E-mail"
             icon="/assets/images/people-Icon.png"
           />
-          <InputBox
+          <FormInputBox
             text={userInfo.password}
             onChange={handleChange}
             placeholder="password"

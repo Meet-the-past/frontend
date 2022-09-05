@@ -1,6 +1,22 @@
-/* eslint-disable react/require-default-props */
 import React, { useState } from "react";
-import FormAlertMessage from "../components/FormAlertMessage";
+import FormAlertMessage from "./FormAlertMessage";
+
+/**
+ * @name : Teawon
+ * @component : 회원가입 , 로그인 Form에서 공통으로 사용하는 각각의 input
+ * @create-date 2022-09-05
+ */
+
+/**
+ * @param onChange - text값이 변할때마다 실행하는 함수
+ * @param placeholder - Input값에 들어가는 기본 텍스트
+ * @param text - 현재 입력된 값
+ * @param icon - 아이콘
+ * @param type - password & text등의 타입 지정
+ * @param message - 유효하지 않을 때 출력하는 텍스트 (선택사항)
+ * @param isValid - 입력한 값이 유효하지 않는 지 나타내는 boolean 변수 (선택사항)
+ * @param blurEvnet - focusOut되었을 때 실행하는 함수 (선택사항) -
+ */
 interface InputBoxProps {
   onChange?: any;
   placeholder: string;
@@ -12,7 +28,7 @@ interface InputBoxProps {
   blurEvnet?: any;
 }
 
-export default function InputBox({
+export default function FormInputBox({
   onChange = () => {},
   placeholder,
   icon,

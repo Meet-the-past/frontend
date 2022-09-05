@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import { Link } from "react-router-dom";
-import InputBox from "../components/InputBox";
+import FormInputBox from "../components/FormInputBox";
 import FormButton from "../components/FormButton";
 
 function RegisterPage() {
@@ -103,7 +103,7 @@ function RegisterPage() {
             회원 가입
           </h1>
 
-          <InputBox
+          <FormInputBox
             text={userInfo.email}
             onChange={handleChange}
             placeholder="email"
@@ -113,7 +113,7 @@ function RegisterPage() {
             blurEvnet={checkEmail}
           />
 
-          <InputBox
+          <FormInputBox
             text={userInfo.userName}
             onChange={handleChange}
             placeholder="userName"
@@ -123,7 +123,7 @@ function RegisterPage() {
             blurEvnet={checkUserName}
           />
 
-          <InputBox
+          <FormInputBox
             text={userInfo.password}
             onChange={handleChange}
             placeholder="password"
@@ -134,7 +134,7 @@ function RegisterPage() {
             blurEvnet={checkPassword}
           />
 
-          <InputBox
+          <FormInputBox
             text={userInfo.passwordConfirm}
             onChange={handleChange}
             placeholder="passwordConfirm"
@@ -152,7 +152,7 @@ function RegisterPage() {
             color="gray"
           />
 
-          <p className="mt-10 mb-10 text-center text-xl font-bold text-textColor">
+          <p className="my-10 text-center text-xl font-bold text-textColor">
             <span>Already have account?</span>
             <Link to="/login">
               <span className="text-blue-800 hover:text-blue-500"> Login!</span>

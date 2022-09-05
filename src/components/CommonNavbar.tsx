@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-//import imgLogo from '../assets/images/logo.png';
+
+/**
+ * @name : Teawon
+ * @component : 상단의 메뉴를 나타내는 Navbar입니다. 화면이 줄어들면 Toggle버튼을 눌러 메뉴로 이동합니다.
+ * @create-date 2022-09-05
+ */
 function CommonNavbar() {
-  const [menuToggle, setMenuToggle] = useState(false);
+  const [menuToggle, setMenuToggle] = useState(false); // Toggle여부 변수
 
   return (
     <div>
