@@ -1,5 +1,11 @@
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  safelist: [
+    {
+      pattern: /bg-(red|gray|blue)-(400|600)/,
+      variants: ["lg", "hover", "focus", "lg:hover"],
+    },
+  ],
   theme: {
     extend: {
       colors: {
