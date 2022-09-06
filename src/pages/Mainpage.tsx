@@ -1,11 +1,46 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import { Link } from "react-router-dom";
 
 function Mainpage() {
+  const scoll1Ref1 = useRef<any>();
+  const scoll1Ref2 = useRef<any>();
+  const scoll1Ref3 = useRef<any>();
+
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    const scrollPosition = window.pageYOffset;
+    setScrollY(scrollPosition);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  // console.log(scrollY);
+  // console.log(window.innerHeight);
+  // console.log(window.outerHeight);
+
+  const useMoveScrool = () => {
+    if (scrollY < window.innerHeight) {
+      scoll1Ref1.current.scrollIntoView({ behavior: "smooth" });
+    } else if (scrollY < 2 * window.innerHeight) {
+      scoll1Ref2.current.scrollIntoView({ behavior: "smooth" });
+    } else {
+      scoll1Ref3.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div>
       <CommonNavbar />
+      <button className="fixed left-1/2 bottom-10 " onClick={useMoveScrool}>
+        <span className="opacity-30 hover:opacity-100">이동하기</span>
+      </button>
       <div>
         <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
           <div className="m-auto">
@@ -25,7 +60,10 @@ function Mainpage() {
         </div>
       </div>
 
-      <div className="w-full bg-[url('../public/assets/images/background-2.png')]">
+      <div
+        ref={scoll1Ref1}
+        className="w-full bg-[url('../public/assets/images/background-2.png')]"
+      >
         <div className="grid h-screen place-items-center">
           <div>
             <div className="float-center sm:float-left">
@@ -49,7 +87,7 @@ function Mainpage() {
           </div>
         </div>
 
-        <div className="grid place-items-center">
+        <div ref={scoll1Ref2} className="grid place-items-center h-screen">
           <div>
             <div className="float-center sm:float-right ml-5">
               <img
@@ -72,7 +110,10 @@ function Mainpage() {
           </div>
         </div>
 
-        <div className="flex mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-52 ">
+        <div
+          ref={scoll1Ref3}
+          className="flex mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-96 "
+        >
           <div className="m-auto">
             <h1 className="text-3xl font-bold text-white drop-shadow-md">
               과거를 만나보시겠습니까?
