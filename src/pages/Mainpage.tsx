@@ -1,11 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import { Link } from "react-router-dom";
+import Banner from "../images/banner.svg";
 
 function Mainpage() {
-  const scoll1Ref1 = useRef<any>();
-  const scoll1Ref2 = useRef<any>();
-  const scoll1Ref3 = useRef<any>();
+  const scrollRef = useRef<any>([]);
 
   const [scrollY, setScrollY] = useState(0);
 
@@ -27,11 +26,11 @@ function Mainpage() {
 
   const useMoveScrool = () => {
     if (scrollY < window.innerHeight) {
-      scoll1Ref1.current.scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[0].scrollIntoView({ behavior: "smooth" });
     } else if (scrollY < 2 * window.innerHeight) {
-      scoll1Ref2.current.scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[1].scrollIntoView({ behavior: "smooth" });
     } else {
-      scoll1Ref3.current.scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[2].scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -39,19 +38,19 @@ function Mainpage() {
     <div>
       <CommonNavbar />
       <button className="fixed left-1/2 bottom-10 " onClick={useMoveScrool}>
-        <span className="opacity-30 hover:opacity-100">이동하기</span>
+        <span className="z-0 opacity-30 hover:opacity-100">이동하기</span>
       </button>
       <div>
         <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
           <div className="m-auto">
             <img
-              className="rounded-xl w-11/12 m-auto"
-              src="/assets/images/banner.png"
+              className="rounded-xl w-8/12 m-auto"
+              src={Banner}
               alt="banner"
             />
 
             <div className="text-center">
-              <h1 className="sm:text-6xl text-4xl font-serif font-light text-textColor drop-shadow-md my-5">
+              <h1 className="text-6xl font-serif font-light text-textColor drop-shadow-md my-5">
                 Meet The Past
               </h1>
               <p>찢기고 구겨진 추억을 되살려드립니다</p>
@@ -61,12 +60,12 @@ function Mainpage() {
       </div>
 
       <div
-        ref={scoll1Ref1}
+        ref={(el) => (scrollRef.current[0] = el)}
         className="w-full bg-[url('../public/assets/images/background-2.png')]"
       >
         <div className="grid h-screen place-items-center">
           <div>
-            <div className="float-center sm:float-left">
+            <div className="float-left">
               <img
                 className="h-96 "
                 src="/assets/images/mainPage_people1.png"
@@ -74,7 +73,7 @@ function Mainpage() {
               />
             </div>
 
-            <div className="pl-10 float-center sm:float-right w-80 m-auto ">
+            <div className="pl-10 float-right w-80 m-auto ">
               <p className="mt-20 text-xl font-bold text-textColor">
                 보기만 해도 <br></br> 가슴이 아리는 사진이 있습니까?
               </p>
@@ -87,9 +86,12 @@ function Mainpage() {
           </div>
         </div>
 
-        <div ref={scoll1Ref2} className="grid place-items-center h-screen">
+        <div
+          ref={(el) => (scrollRef.current[1] = el)}
+          className="grid place-items-center h-screen"
+        >
           <div>
-            <div className="float-center sm:float-right ml-5">
+            <div className="float-right ml-5">
               <img
                 className="h-96 "
                 src="/assets/images/mainPage_people2.png"
@@ -97,7 +99,7 @@ function Mainpage() {
               />
             </div>
 
-            <div className="pl-10 float-center sm:float-left w-80 m-auto ">
+            <div className="pl-10 float-left w-80 m-auto ">
               <p className="mt-20 text-xl font-bold text-textColor">
                 누군가의 기억과 가까운 모습으로 <br></br>
                 추억을 되살려드리겠습니다
@@ -111,10 +113,10 @@ function Mainpage() {
         </div>
 
         <div
-          ref={scoll1Ref3}
-          className="flex mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-96 "
+          ref={(el) => (scrollRef.current[2] = el)}
+          className="flex mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-screen "
         >
-          <div className="m-auto">
+          <div className="m-auto ">
             <h1 className="text-3xl font-bold text-white drop-shadow-md">
               과거를 만나보시겠습니까?
             </h1>
