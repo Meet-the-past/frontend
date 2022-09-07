@@ -5,24 +5,35 @@ import { Link } from "react-router-dom";
 import Banner from "../assets/images/banner.svg";
 import MainPagePeople1 from "../assets/images/mainPagePeople1.svg";
 import MainPagePeople2 from "../assets/images/mainPagePeople2.svg";
+import BottomArrowIcon from "../assets/images/bottomArrowIcon.svg";
 
 function Mainpage() {
   const scrollRef = useRef<any>([]);
 
-  const [scrollY, setScrollY] = useState(0);
+  const [scrollY, setScrollY] = useState(0); //스크롤 위치 값
+  const [scrollButtonStatus, setScrollButtonStatus] = useState(true); //스크롤 상태
+
+  /**
+   * @name : Teawon
+   * @function handleScroll : 화면이동에 따른 스크롤 값을 가져오고 일정 값 이상이라면 스크롤 상태를 숨김
+   * @create-date 2022-09-08
+   */
 
   const handleScroll = () => {
     const scrollPosition = window.pageYOffset;
     setScrollY(scrollPosition);
+    if (scrollY > 3 * window.innerHeight) {
+      setScrollButtonStatus(false);
+    } else {
+      setScrollButtonStatus(true);
+    }
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  /**
+   * @name : Teawon
+   * @function useMoveScrool : 현재 스크롤값이 화면길이의 일정 값을 넘어가면 버튼클릭 시 이동할 컴포넌트를 변경
+   * @create-date 2022-09-08
+   */
 
   const useMoveScrool = () => {
     if (scrollY < window.innerHeight) {
@@ -34,12 +45,30 @@ function Mainpage() {
     }
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
   return (
     <div>
       <CommonNavbar />
-      <button className="fixed left-1/2 bottom-10 " onClick={useMoveScrool}>
-        <span className="z-0 opacity-30 hover:opacity-100">이동하기</span>
-      </button>
+      {scrollButtonStatus && (
+        <button
+          className="fixed left-1/2 bottom-10 z-0 opacity-30 hover:opacity-100 "
+          onClick={useMoveScrool}
+        >
+          <img
+            className="fixed w-16 -translate-y-1/2 -translate-x-1/2"
+            src={BottomArrowIcon}
+            alt="arrowIcon"
+          ></img>
+        </button>
+      )}
+
       <div>
         <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
           <div className="m-auto">
@@ -117,7 +146,7 @@ function Mainpage() {
           className="flex  bg-cover mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-screen "
         >
           <div className="m-auto ">
-            <h1 className="text-3xl font-bold text-white drop-shadow-md">
+            <h1 className="text-4xl font-bold text-white drop-shadow-md">
               과거를 만나보시겠습니까?
             </h1>
             <div className="mt-5 flex items-center justify-center">
