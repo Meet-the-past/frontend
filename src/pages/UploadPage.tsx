@@ -51,7 +51,7 @@ function UploadPage() {
           className="bg-white rounded-md my-16 mx-12 w-full flex flex-col justify-center"
           style={{ height: 500, color: "#561D1D" }}
         >
-          <button>
+          <button className="flex justify-center border-2 rounded-lg mx-16 my-8 py-36">
             <img src={urlImg}></img>
             <input
               type="file"
@@ -62,8 +62,8 @@ function UploadPage() {
             {isImg ? null : (
               <div>
                 {" "}
-                <CloudUploadIcon />
-                <div style={{ color: "#561D1D" }}> Upload</div>
+                <CloudUploadIcon className="flex" />
+                <div style={{ color: "#561D1D" }}>Click to Upload</div>
               </div>
             )}
           </button>
