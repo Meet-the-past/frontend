@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import FormInputBox from "../components/FormInputBox";
 import FormButton from "../components/FormButton";
 
+import peopleIcon from "../assets/images/peopleIcon.svg";
+import passwordIcon from "../assets/images/passwordIcon.svg";
+import passwordCheckIcon from "../assets/images/passwordCheckIcon.svg";
+
 function RegisterPage() {
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -107,7 +111,7 @@ function RegisterPage() {
             text={userInfo.email}
             onChange={handleChange}
             placeholder="email"
-            icon="/assets/images/people-Icon.png"
+            icon={peopleIcon}
             message={emailMessage}
             isValid={validEmail}
             blurEvnet={checkEmail}
@@ -117,7 +121,7 @@ function RegisterPage() {
             text={userInfo.userName}
             onChange={handleChange}
             placeholder="userName"
-            icon="/assets/images/people-Icon.png"
+            icon={peopleIcon}
             message={userNameMesssage}
             isValid={validUserName}
             blurEvnet={checkUserName}
@@ -127,7 +131,7 @@ function RegisterPage() {
             text={userInfo.password}
             onChange={handleChange}
             placeholder="password"
-            icon="/assets/images/password-Icon.png"
+            icon={passwordIcon}
             type="password"
             message={passwordMessage}
             isValid={validPassword}
@@ -138,7 +142,7 @@ function RegisterPage() {
             text={userInfo.passwordConfirm}
             onChange={handleChange}
             placeholder="passwordConfirm"
-            icon="/assets/images/password-Icon2.png"
+            icon={passwordCheckIcon}
             type="password"
             message={passwordConfirmMessage}
             isValid={validPasswrodConfirm}

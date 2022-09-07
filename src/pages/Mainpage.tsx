@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import { Link } from "react-router-dom";
-import Banner from "../images/banner.svg";
+
+import Banner from "../assets/images/banner.svg";
+import MainPagePeople1 from "../assets/images/mainPagePeople1.svg";
+import MainPagePeople2 from "../assets/images/mainPagePeople2.svg";
 
 function Mainpage() {
   const scrollRef = useRef<any>([]);
@@ -20,9 +23,6 @@ function Mainpage() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  // console.log(scrollY);
-  // console.log(window.innerHeight);
-  // console.log(window.outerHeight);
 
   const useMoveScrool = () => {
     if (scrollY < window.innerHeight) {
@@ -44,13 +44,13 @@ function Mainpage() {
         <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
           <div className="m-auto">
             <img
-              className="rounded-xl w-8/12 m-auto"
+              className=" rounded-xl w-8/12 m-auto"
               src={Banner}
               alt="banner"
             />
 
             <div className="text-center">
-              <h1 className="text-6xl font-serif font-light text-textColor drop-shadow-md my-5">
+              <h1 className="sm:text-6xl text-4xl font-serif font-light text-textColor drop-shadow-md mt-16 mb-5">
                 Meet The Past
               </h1>
               <p>찢기고 구겨진 추억을 되살려드립니다</p>
@@ -65,15 +65,15 @@ function Mainpage() {
       >
         <div className="grid h-screen place-items-center">
           <div>
-            <div className="float-left">
+            <div className="float-center sm:float-left">
               <img
-                className="h-96 "
-                src="/assets/images/mainPage_people1.png"
-                alt="banner"
+                className="h-96  m-auto "
+                src={MainPagePeople1}
+                alt="banner_people1"
               />
             </div>
 
-            <div className="pl-10 float-right w-80 m-auto ">
+            <div className="pl-10  sm:float-right w-80 m-auto ">
               <p className="mt-20 text-xl font-bold text-textColor">
                 보기만 해도 <br></br> 가슴이 아리는 사진이 있습니까?
               </p>
@@ -91,15 +91,15 @@ function Mainpage() {
           className="grid place-items-center h-screen"
         >
           <div>
-            <div className="float-right ml-5">
+            <div className="float-center sm:float-right ml-5">
               <img
-                className="h-96 "
-                src="/assets/images/mainPage_people2.png"
-                alt="banner"
+                className="h-96  m-auto "
+                src={MainPagePeople2}
+                alt="banner_people2"
               />
             </div>
 
-            <div className="pl-10 float-left w-80 m-auto ">
+            <div className="pl-10 float-center sm:float-left w-80 m-auto ">
               <p className="mt-20 text-xl font-bold text-textColor">
                 누군가의 기억과 가까운 모습으로 <br></br>
                 추억을 되살려드리겠습니다
@@ -114,7 +114,7 @@ function Mainpage() {
 
         <div
           ref={(el) => (scrollRef.current[2] = el)}
-          className="flex mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-screen "
+          className="flex  bg-cover mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-screen "
         >
           <div className="m-auto ">
             <h1 className="text-3xl font-bold text-white drop-shadow-md">
