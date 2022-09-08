@@ -56,21 +56,20 @@ function Mainpage() {
 
   return (
     <div>
-      <CommonNavbar />
-      {scrollButtonStatus && (
-        <button
-          className="fixed left-1/2 bottom-10 z-0 opacity-30 hover:opacity-100 "
-          onClick={useMoveScrool}
-        >
-          <img
-            className="fixed w-16 -translate-y-1/2 -translate-x-1/2"
-            src={BottomArrowIcon}
-            alt="arrowIcon"
-          ></img>
-        </button>
-      )}
-
       <div>
+        <CommonNavbar />
+        {scrollButtonStatus && (
+          <div className="fixed left-1/2 bottom-10 z-0 opacity-30 hover:opacity-100 ">
+            <button onClick={useMoveScrool}>
+              <img
+                className="w-16 -translate-x-1/2"
+                src={BottomArrowIcon}
+                alt="arrowIcon"
+              ></img>
+            </button>
+          </div>
+        )}
+
         <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
           <div className="m-auto">
             <img
