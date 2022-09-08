@@ -15,6 +15,9 @@ module.exports = {
         mainPageBackground: "#A68F66",
         formBoxColor: "#B49C72",
       },
+      height: {
+        footer: "calc(100vh - 3.5rem)",
+      },
     },
   },
   plugins: [],
