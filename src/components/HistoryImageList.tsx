@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import ImageBlock from "../components/ImageBlock";
 
 function HistoryImageList() {
   const [imageList, setImageList] = useState<any>([]); // history이미지 리스트
@@ -7,6 +8,11 @@ function HistoryImageList() {
   //   const indexOfLastVideo = currentPage * characterPerPage;
   //   const indexOfFirstVideo = indexOfLastVideo - characterPerPage;
 
+  const deleteImage = (ImageId: number) => {
+    setImageList(
+      imageList.filter((historyImg: any) => historyImg.imageId !== ImageId)
+    );
+  };
   useEffect(() => {
     const fetchData = () => {
       setImageList([
@@ -56,32 +62,12 @@ function HistoryImageList() {
     fetchData();
   }, []);
 
-  const deleteImage = (ImageId: number) => {
-    setImageList(
-      imageList.filter((historyImg: any) => historyImg.imageId !== ImageId)
-    );
-  };
-
   return (
     <div className="relative inline-flex w-full justify-center items-center ">
       <div className="grid grid-cols-4 gap-20">
         {imageList &&
           imageList.map((img: any) => (
-            <div className="relative w-60 h-60" key={img.imageId}>
-              <img
-                className="flex object-cover h-60 w-60"
-                alt="sample"
-                src={img.after_url}
-              />
-
-              <button onClick={() => deleteImage(img.imageId)}>
-                <img
-                  className="absolute w-8 h-8 right-0 top-0"
-                  alt="deleteBtn"
-                  src="/images/negative.png"
-                />
-              </button>
-            </div>
+            <ImageBlock ImageDto={img} deleteImageFuc={deleteImage} />
           ))}
       </div>
     </div>
