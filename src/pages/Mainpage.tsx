@@ -9,7 +9,7 @@ import MainPagePeople2 from "../assets/images/mainPagePeople2.svg";
 import BottomArrowIcon from "../assets/images/bottomArrowIcon.svg";
 
 function Mainpage() {
-  const scrollRef = useRef<any>([]);
+  const scrollRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const [scrollY, setScrollY] = useState(0); //스크롤 위치 값
   const [scrollButtonStatus, setScrollButtonStatus] = useState(true); //스크롤 상태
@@ -38,11 +38,11 @@ function Mainpage() {
 
   const useMoveScrool = () => {
     if (scrollY < window.innerHeight) {
-      scrollRef.current[0].scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[0]?.scrollIntoView({ behavior: "smooth" });
     } else if (scrollY < 2 * window.innerHeight) {
-      scrollRef.current[1].scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[1]?.scrollIntoView({ behavior: "smooth" });
     } else {
-      scrollRef.current[2].scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[2]?.scrollIntoView({ behavior: "smooth" });
     }
   };
 

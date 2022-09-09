@@ -1,27 +1,27 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import ImageBlock from "../components/ImageBlock";
-
+import { ImageDto } from "../utils/types";
 import leftArrowIcon from "../assets/images/leftArrowIcon.svg";
 import rightArrowIcon from "../assets/images/rightArrowIcon.svg";
 
 function HistoryImageList() {
-  const [imageList, setImageList] = useState<any>([]); // history이미지 리스트
+  const [imageList, setImageList] = useState<ImageDto[]>([]); // history이미지 리스트
   const [currentPage, setCurrentPage] = useState<number>(1); //현재 페이지
-  const isPc = useMediaQuery({ query: "(min-width: 1024px)" });
-  const isLaptop = useMediaQuery({ query: "(min-width: 768px)" });
-  const maxCountPerPage = isPc ? 8 : isLaptop ? 6 : 4;
+  const isPc = useMediaQuery({ query: "(min-width: 1024px)" }); // pc뷰
+  const isLaptop = useMediaQuery({ query: "(min-width: 768px)" }); // laptop뷰
+  const maxCountPerPage = isPc ? 8 : isLaptop ? 6 : 4; // 현재 화면에 따라 보여줄 이미지 개수를 지정
   const indexOfLastVideo = currentPage * maxCountPerPage;
   const indexOfFirstVideo = indexOfLastVideo - maxCountPerPage;
 
-  const deleteImage = (ImageId: number) => {
+  const deleteImage = (id: number) => {
     setImageList(
-      imageList.filter((historyImg: any) => historyImg.imageId !== ImageId)
+      imageList.filter((historyImg: ImageDto) => historyImg.image_id !== id)
     );
   };
 
-  const currentImageList = (characterImage: any) => {
+  const currentImageList = (characterImage: ImageDto[]) => {
     return characterImage.slice(indexOfFirstVideo, indexOfLastVideo);
   };
 
@@ -30,47 +30,47 @@ function HistoryImageList() {
       //향후 axios를 통해 값 가져오기
       setImageList([
         {
-          imageId: 1,
+          image_id: 1,
           after_url:
             "https://cdn.imweb.me/thumbnail/20220217/e870e65d082d7.png",
         },
         {
-          imageId: 2,
+          image_id: 2,
           after_url:
             "https://cdn.imweb.me/thumbnail/20220217/e870e65d082d7.png",
         },
         {
-          imageId: 3,
+          image_id: 3,
           after_url:
             "https://cdn.imweb.me/thumbnail/20220217/e870e65d082d7.png",
         },
         {
-          imageId: 4,
+          image_id: 4,
           after_url:
             "https://item.kakaocdn.net/do/00e5cab858701cae162b9ff35f22bab6f43ad912ad8dd55b04db6a64cddaf76d",
         },
         {
-          imageId: 5,
+          image_id: 5,
           after_url:
             "https://cdn.imweb.me/thumbnail/20220217/e870e65d082d7.png",
         },
         {
-          imageId: 6,
+          image_id: 6,
           after_url:
             "https://cdn.imweb.me/thumbnail/20220217/e870e65d082d7.png",
         },
         {
-          imageId: 7,
+          image_id: 7,
           after_url:
             "https://cdn.imweb.me/thumbnail/20220217/e870e65d082d7.png",
         },
         {
-          imageId: 8,
+          image_id: 8,
           after_url:
             "https://cdn.imweb.me/thumbnail/20220217/e870e65d082d7.png",
         },
         {
-          imageId: 9,
+          image_id: 9,
           after_url:
             "https://cdn.imweb.me/thumbnail/20220217/e870e65d082d7.png",
         },
@@ -96,10 +96,10 @@ function HistoryImageList() {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-4 gap-24">
         {imageList &&
-          currentImageList(imageList).map((img: any) => (
+          currentImageList(imageList).map((img: ImageDto) => (
             <ImageBlock
-              key={img.imageId}
-              ImageDto={img}
+              key={img.image_id}
+              imageInfo={img}
               deleteImageFuc={deleteImage}
             />
           ))}

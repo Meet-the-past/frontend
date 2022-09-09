@@ -1,13 +1,13 @@
 import React from "react";
-
+import { ImageDto } from "../utils/types";
 import xButtonIcon from "../assets/images/xIcon.svg";
 
 interface ImageBlockProps {
   deleteImageFuc: (id: number) => void;
-  ImageDto: any;
+  imageInfo: ImageDto;
 }
 
-function ImageBlock({ deleteImageFuc, ImageDto }: ImageBlockProps) {
+function ImageBlock({ deleteImageFuc, imageInfo }: ImageBlockProps) {
   const useConfirm = (message: string, onConfirm: any) => {
     if (!onConfirm || typeof onConfirm !== "function") {
       return;
@@ -23,17 +23,17 @@ function ImageBlock({ deleteImageFuc, ImageDto }: ImageBlockProps) {
   };
 
   const deleteConfirm = () => {
-    deleteImageFuc(ImageDto.imageId);
+    deleteImageFuc(imageInfo.image_id);
   };
 
   const confirmDelete = useConfirm("정말 삭제하시겠습니까?", deleteConfirm);
 
   return (
-    <div className="relative" key={ImageDto.imageId}>
+    <div className="relative" key={imageInfo.image_id}>
       <img
         className="flex object-cover object-center aspect-square"
         alt="sample"
-        src={ImageDto.after_url}
+        src={imageInfo.after_url}
       />
       <button onClick={confirmDelete}>
         <img
