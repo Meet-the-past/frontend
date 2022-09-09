@@ -81,7 +81,7 @@ function HistoryImageList() {
   }, []);
 
   return (
-    <div className="inline-flex max-w-screen-xl m-auto items-center m-16">
+    <div className="inline-flex max-w-screen-xl m-auto items-center">
       <div className={currentPage > 1 ? "" : "invisible"}>
         <button
           className="flex mr-10 ml-2 justify-center"
