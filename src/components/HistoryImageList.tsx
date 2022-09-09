@@ -6,7 +6,7 @@ import rightArrowIcon from "../assets/images/rightArrowIcon.svg";
 
 function HistoryImageList() {
   const [imageList, setImageList] = useState<any>([]); // history이미지 리스트
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(1); //현재 페이지
   const [maxCountPerPage, setmaxCountPerPage] = useState<number>(8); //페이지당 원하는개수
   const indexOfLastVideo = currentPage * maxCountPerPage;
   const indexOfFirstVideo = indexOfLastVideo - maxCountPerPage;
@@ -23,6 +23,7 @@ function HistoryImageList() {
 
   useEffect(() => {
     const fetchData = () => {
+      //향후 axios를 통해 값 가져오기
       setImageList([
         {
           imageId: 1,
@@ -77,9 +78,9 @@ function HistoryImageList() {
 
   return (
     <div className="relative inline-flex w-full justify-center items-center ">
-      <div>
+      <div className={currentPage > 1 ? "" : "invisible"}>
         <button
-          className="show flex items-center justify-center"
+          className="flex mr-10 items-center justify-center"
           onClick={() =>
             setCurrentPage((currentPage) =>
               currentPage > 1 ? currentPage - 1 : currentPage
@@ -99,9 +100,16 @@ function HistoryImageList() {
             />
           ))}
       </div>
-      <div>
+      <div
+        className={
+          imageList.length > maxCountPerPage &&
+          imageList.length > currentPage * maxCountPerPage
+            ? ""
+            : "invisible"
+        }
+      >
         <button
-          className="show flex items-center justify-center"
+          className="flex ml-10 items-center justify-center"
           onClick={() =>
             setCurrentPage((currentPage) =>
               imageList.length > maxCountPerPage &&

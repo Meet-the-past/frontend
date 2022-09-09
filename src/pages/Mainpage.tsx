@@ -70,7 +70,7 @@ function Mainpage() {
           </div>
         )}
 
-        <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
+        <div className="bg-[url('../public/assets/images/background-1.png')] w-full commonHeight flex">
           <div className="m-auto">
             <img
               className=" rounded-xl w-8/12 m-auto"

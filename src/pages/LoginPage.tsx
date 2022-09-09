@@ -22,7 +22,7 @@ function LoginPage() {
     <div>
       <CommonNavbar />
       <div className="bg-[url('../public/assets/images/background-1.png')]">
-        <div className="flex justify-center items-center min-h-screen">
+        <div className="flex justify-center items-center commonHeight">
           <div className="shadow-lg w-4/5 h-3/4 rounded-3xl bg-white opacity-80 m-16">
             <h1 className="mt-20 text-center text-4xl font-bold text-textColor">
               로그인
