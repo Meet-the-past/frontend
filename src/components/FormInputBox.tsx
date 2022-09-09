@@ -50,7 +50,7 @@ export default function FormInputBox({
       <div className="flex flex-wrap items-stretch w-3/5 border-black border-2 rounded-full m-5 p-2">
         <div className="flex -mr-px justify-center w-15 ">
           <span className="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
-            <img src={icon} alt={placeholder}></img>
+            {<img src={icon} alt={placeholder}></img>}
           </span>
         </div>
 

@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import FormInputBox from "../components/FormInputBox";
 import FormButton from "../components/FormButton";
 
+import peopleIcon from "../assets/images/peopleIcon.svg";
+import passwordIcon from "../assets/images/passwordIcon.svg";
+
 function LoginPage() {
   const [userInfo, setUserInfo] = useState({
     email: "",
@@ -29,13 +32,13 @@ function LoginPage() {
             text={userInfo.email}
             onChange={handleChange}
             placeholder="E-mail"
-            icon="/assets/images/people-Icon.png"
+            icon={peopleIcon}
           />
           <FormInputBox
             text={userInfo.password}
             onChange={handleChange}
             placeholder="password"
-            icon="/assets/images/password-Icon.png"
+            icon={passwordIcon}
             type="password"
           />
 

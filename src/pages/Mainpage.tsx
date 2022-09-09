@@ -1,22 +1,86 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import CommonNavbar from "../components/CommonNavbar";
+import CommonFooter from "../components/CommonFooter";
 import { Link } from "react-router-dom";
 
+import Banner from "../assets/images/banner.svg";
+import MainPagePeople1 from "../assets/images/mainPagePeople1.svg";
+import MainPagePeople2 from "../assets/images/mainPagePeople2.svg";
+import BottomArrowIcon from "../assets/images/bottomArrowIcon.svg";
+
 function Mainpage() {
+  const scrollRef = useRef<any>([]);
+
+  const [scrollY, setScrollY] = useState(0); //스크롤 위치 값
+  const [scrollButtonStatus, setScrollButtonStatus] = useState(true); //스크롤 상태
+
+  /**
+   * @name : Teawon
+   * @function handleScroll : 화면이동에 따른 스크롤 값을 가져오고 일정 값 이상이라면 스크롤 상태를 숨김
+   * @create-date 2022-09-08
+   */
+
+  const handleScroll = () => {
+    const scrollPosition = window.pageYOffset;
+    setScrollY(scrollPosition);
+    if (scrollY > 3 * window.innerHeight) {
+      setScrollButtonStatus(false);
+    } else {
+      setScrollButtonStatus(true);
+    }
+  };
+
+  /**
+   * @name : Teawon
+   * @function useMoveScrool : 현재 스크롤값이 화면길이의 일정 값을 넘어가면 버튼클릭 시 이동할 컴포넌트를 변경
+   * @create-date 2022-09-08
+   */
+
+  const useMoveScrool = () => {
+    if (scrollY < window.innerHeight) {
+      scrollRef.current[0].scrollIntoView({ behavior: "smooth" });
+    } else if (scrollY < 2 * window.innerHeight) {
+      scrollRef.current[1].scrollIntoView({ behavior: "smooth" });
+    } else {
+      scrollRef.current[2].scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
   return (
     <div>
       <CommonNavbar />
+      {scrollButtonStatus && (
+        <button
+          className="fixed left-1/2 bottom-10 z-0 opacity-30 hover:opacity-100 "
+          onClick={useMoveScrool}
+        >
+          <img
+            className="fixed w-16 -translate-y-1/2 -translate-x-1/2"
+            src={BottomArrowIcon}
+            alt="arrowIcon"
+          ></img>
+        </button>
+      )}
+
       <div>
         <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
           <div className="m-auto">
             <img
-              className="rounded-xl w-4/5 m-auto"
-              src="/assets/images/banner.png"
+              className=" rounded-xl w-8/12 m-auto"
+              src={Banner}
               alt="banner"
             />
 
             <div className="text-center">
-              <h1 className="text-6xl font-serif font-light text-textColor drop-shadow-md my-5">
+              <h1 className="sm:text-6xl text-4xl font-serif font-light text-textColor drop-shadow-md mt-16 mb-5">
                 Meet The Past
               </h1>
               <p>찢기고 구겨진 추억을 되살려드립니다</p>
@@ -25,18 +89,21 @@ function Mainpage() {
         </div>
       </div>
 
-      <div className="w-full bg-[url('../public/assets/images/background-2.png')]">
+      <div
+        ref={(el) => (scrollRef.current[0] = el)}
+        className="w-full bg-[url('../public/assets/images/background-2.png')]"
+      >
         <div className="grid h-screen place-items-center">
           <div>
-            <div className="float-left">
+            <div className="float-center sm:float-left">
               <img
-                className="h-96 "
-                src="/assets/images/mainPage_people1.png"
-                alt="banner"
+                className="h-96  m-auto "
+                src={MainPagePeople1}
+                alt="banner_people1"
               />
             </div>
 
-            <div className="pl-10 float-right w-80 m-auto ">
+            <div className="pl-10  sm:float-right w-80 m-auto ">
               <p className="mt-20 text-xl font-bold text-textColor">
                 보기만 해도 <br></br> 가슴이 아리는 사진이 있습니까?
               </p>
@@ -49,17 +116,20 @@ function Mainpage() {
           </div>
         </div>
 
-        <div className="grid place-items-center">
+        <div
+          ref={(el) => (scrollRef.current[1] = el)}
+          className="grid place-items-center h-screen"
+        >
           <div>
-            <div className="float-right ml-5">
+            <div className="float-center sm:float-right ml-5">
               <img
-                className="h-96 "
-                src="/assets/images/mainPage_people2.png"
-                alt="banner"
+                className="h-96  m-auto "
+                src={MainPagePeople2}
+                alt="banner_people2"
               />
             </div>
 
-            <div className="pl-10 float-left w-80 m-auto ">
+            <div className="pl-10 float-center sm:float-left w-80 m-auto ">
               <p className="mt-20 text-xl font-bold text-textColor">
                 누군가의 기억과 가까운 모습으로 <br></br>
                 추억을 되살려드리겠습니다
@@ -72,9 +142,12 @@ function Mainpage() {
           </div>
         </div>
 
-        <div className="flex mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-52 ">
-          <div className="m-auto">
-            <h1 className="text-3xl font-bold text-white drop-shadow-md">
+        <div
+          ref={(el) => (scrollRef.current[2] = el)}
+          className="flex  bg-cover mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-footer "
+        >
+          <div className="m-auto ">
+            <h1 className="text-5xl font-bold text-white drop-shadow-md">
               과거를 만나보시겠습니까?
             </h1>
             <div className="mt-5 flex items-center justify-center">
@@ -86,6 +159,7 @@ function Mainpage() {
             </div>
           </div>
         </div>
+        <CommonFooter />
       </div>
     </div>
   );
