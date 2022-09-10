@@ -25,7 +25,7 @@ interface InputBoxProps {
   type?: string;
   message?: string;
   isValid?: boolean;
-  blurEvnet?: any;
+  blurEvnet?: () => void;
 }
 
 export default function FormInputBox({

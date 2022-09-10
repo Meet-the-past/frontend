@@ -9,7 +9,7 @@ import MainPagePeople2 from "../assets/images/mainPagePeople2.svg";
 import BottomArrowIcon from "../assets/images/bottomArrowIcon.svg";
 
 function Mainpage() {
-  const scrollRef = useRef<any>([]);
+  const scrollRef = useRef<(HTMLDivElement | null)[]>([]);
 
   const [scrollY, setScrollY] = useState(0); //스크롤 위치 값
   const [scrollButtonStatus, setScrollButtonStatus] = useState(true); //스크롤 상태
@@ -38,11 +38,11 @@ function Mainpage() {
 
   const useMoveScrool = () => {
     if (scrollY < window.innerHeight) {
-      scrollRef.current[0].scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[0]?.scrollIntoView({ behavior: "smooth" });
     } else if (scrollY < 2 * window.innerHeight) {
-      scrollRef.current[1].scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[1]?.scrollIntoView({ behavior: "smooth" });
     } else {
-      scrollRef.current[2].scrollIntoView({ behavior: "smooth" });
+      scrollRef.current[2]?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -56,22 +56,21 @@ function Mainpage() {
 
   return (
     <div>
-      <CommonNavbar />
-      {scrollButtonStatus && (
-        <button
-          className="fixed left-1/2 bottom-10 z-0 opacity-30 hover:opacity-100 "
-          onClick={useMoveScrool}
-        >
-          <img
-            className="fixed w-16 -translate-y-1/2 -translate-x-1/2"
-            src={BottomArrowIcon}
-            alt="arrowIcon"
-          ></img>
-        </button>
-      )}
-
       <div>
-        <div className="bg-[url('../public/assets/images/background-1.png')] w-full h-screen flex">
+        <CommonNavbar />
+        {scrollButtonStatus && (
+          <div className="fixed left-1/2 bottom-10 z-0 opacity-30 hover:opacity-100 ">
+            <button onClick={useMoveScrool}>
+              <img
+                className="w-16 -translate-x-1/2"
+                src={BottomArrowIcon}
+                alt="arrowIcon"
+              ></img>
+            </button>
+          </div>
+        )}
+
+        <div className="bg-[url('../public/assets/images/background-1.png')] w-full commonHeight flex">
           <div className="m-auto">
             <img
               className=" rounded-xl w-8/12 m-auto"

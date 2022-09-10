@@ -92,76 +92,80 @@ function RegisterPage() {
     }
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
 
   return (
-    <div className="bg-[url('../public/assets/images/background-1.png')]">
+    <div>
       <CommonNavbar />
+      <div className="bg-[url('../public/assets/images/background-1.png')]">
+        <div className="flex justify-center items-center commonHeight">
+          <div className="shadow-lg w-4/5 h-3/4 rounded-3xl bg-white opacity-80 m-16">
+            <h1 className="mt-20 text-center text-4xl font-bold text-textColor">
+              회원 가입
+            </h1>
 
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="shadow-lg w-4/5 h-3/4 rounded-3xl bg-white opacity-80 m-16">
-          <h1 className="mt-20 text-center text-4xl font-bold text-textColor">
-            회원 가입
-          </h1>
+            <FormInputBox
+              text={userInfo.email}
+              onChange={handleChange}
+              placeholder="email"
+              icon={peopleIcon}
+              message={emailMessage}
+              isValid={validEmail}
+              blurEvnet={checkEmail}
+            />
 
-          <FormInputBox
-            text={userInfo.email}
-            onChange={handleChange}
-            placeholder="email"
-            icon={peopleIcon}
-            message={emailMessage}
-            isValid={validEmail}
-            blurEvnet={checkEmail}
-          />
+            <FormInputBox
+              text={userInfo.userName}
+              onChange={handleChange}
+              placeholder="userName"
+              icon={peopleIcon}
+              message={userNameMesssage}
+              isValid={validUserName}
+              blurEvnet={checkUserName}
+            />
 
-          <FormInputBox
-            text={userInfo.userName}
-            onChange={handleChange}
-            placeholder="userName"
-            icon={peopleIcon}
-            message={userNameMesssage}
-            isValid={validUserName}
-            blurEvnet={checkUserName}
-          />
+            <FormInputBox
+              text={userInfo.password}
+              onChange={handleChange}
+              placeholder="password"
+              icon={passwordIcon}
+              type="password"
+              message={passwordMessage}
+              isValid={validPassword}
+              blurEvnet={checkPassword}
+            />
 
-          <FormInputBox
-            text={userInfo.password}
-            onChange={handleChange}
-            placeholder="password"
-            icon={passwordIcon}
-            type="password"
-            message={passwordMessage}
-            isValid={validPassword}
-            blurEvnet={checkPassword}
-          />
+            <FormInputBox
+              text={userInfo.passwordConfirm}
+              onChange={handleChange}
+              placeholder="passwordConfirm"
+              icon={passwordCheckIcon}
+              type="password"
+              message={passwordConfirmMessage}
+              isValid={validPasswrodConfirm}
+              blurEvnet={checkPasswordConfirm}
+            />
 
-          <FormInputBox
-            text={userInfo.passwordConfirm}
-            onChange={handleChange}
-            placeholder="passwordConfirm"
-            icon={passwordCheckIcon}
-            type="password"
-            message={passwordConfirmMessage}
-            isValid={validPasswrodConfirm}
-            blurEvnet={checkPasswordConfirm}
-          />
+            <FormButton
+              text="회원가입"
+              height="h-12"
+              width="w-3/5"
+              color="gray"
+            />
 
-          <FormButton
-            text="회원가입"
-            height="h-12"
-            width="w-3/5"
-            color="gray"
-          />
-
-          <p className="my-10 text-center text-xl font-bold text-textColor">
-            <span>Already have account?</span>
-            <Link to="/login">
-              <span className="text-blue-800 hover:text-blue-500"> Login!</span>
-            </Link>
-          </p>
+            <p className="my-10 text-center text-xl font-bold text-textColor">
+              <span>Already have account?</span>
+              <Link to="/login">
+                <span className="text-blue-800 hover:text-blue-500">
+                  {" "}
+                  Login!
+                </span>
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
