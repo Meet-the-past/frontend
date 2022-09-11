@@ -1,20 +1,41 @@
-const SET_TOKEN = "set_token";
+const LOGIN = "user_login";
+const LOGOUT = "user_logout";
+const REFRESH = "renew_refreshToken";
 
 const AuthInitialState = {
-  token: null,
+  accessToken: null,
+  refreshToken: null,
+  userEmail: "",
 };
 
-export const setToken = (token: string) => ({
-  type: SET_TOKEN,
-  token,
+export const login_sucess = (data: any) => ({
+  type: LOGIN,
+  data,
 });
 
 export const AuthReducer = (state = AuthInitialState, action: any) => {
   switch (action.type) {
-    case SET_TOKEN:
+    case LOGIN:
       return {
         ...state,
-        token: action.token,
+        accessToken: action.data.accessToken,
+        refreshToken: action.data.refreshToken,
+        expiredTime: action.data.accessTokenExpiresIn,
+        userEmail: "tempEmail",
+      };
+
+    case LOGOUT:
+      return {
+        ...state,
+        state: AuthInitialState,
+      };
+
+    case REFRESH:
+      return {
+        ...state,
+        accessToken: action.data.accessToken,
+        refreshToken: action.data.refreshToken,
+        expiredTime: action.data.accessTokenExpiresIn,
       };
     default:
       return state;

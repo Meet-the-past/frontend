@@ -6,7 +6,7 @@ import FormButton from "../components/FormButton";
 import axios from "../utils//axios";
 
 import { useDispatch } from "react-redux";
-import { setToken } from "../redux/reducers/AuthReducer";
+import { login_sucess } from "../redux/reducers/AuthReducer";
 
 import peopleIcon from "../assets/images/peopleIcon.svg";
 import passwordIcon from "../assets/images/passwordIcon.svg";
@@ -34,7 +34,7 @@ function LoginPage() {
         password: userInfo.password,
       })
       .then(function (response) {
-        dispatch(setToken(response.data.accessToken));
+        dispatch(login_sucess(response.data));
         navigate("/");
       })
       .catch(function (error) {
