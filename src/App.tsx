@@ -9,11 +9,11 @@ import AuthRoute from "./utils/AuthRoute";
 function App() {
   return (
     <Routes>
-      <Route element={<AuthRoute option={true} />}>
+      <Route element={<AuthRoute needLogin={true} />}>
         <Route path="/history" element={<HistoryPage />} />
       </Route>
 
-      <Route element={<AuthRoute option={false} />}>
+      <Route element={<AuthRoute needLogin={false} />}>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
