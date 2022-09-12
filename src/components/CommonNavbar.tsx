@@ -1,13 +1,23 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { log_out } from "../redux/reducers/AuthReducer";
 /**
  * @name : Teawon
  * @component : 상단의 메뉴를 나타내는 Navbar입니다. 화면이 줄어들면 Toggle버튼을 눌러 메뉴로 이동합니다.
  * @create-date 2022-09-05
  */
 function CommonNavbar() {
+  const dispatch = useDispatch();
   const [menuToggle, setMenuToggle] = useState(false); // Toggle여부 변수
+  const [isLogin] = useState(
+    useSelector((state: any) => state.Auth.accessToken) != null
+  );
+
+  const logout = async () => {
+    await dispatch(log_out());
+    alert("로그아웃 되셨습니다.");
+  };
 
   return (
     <div>
@@ -26,13 +36,27 @@ function CommonNavbar() {
 
             {/* 로그인 및 회원가입 메뉴 */}
             <div className="hidden md:flex items-center space-x-1">
-              <Link className="py-5 px-3" to="/login">
-                <span className=" text-white">로그인</span>
-              </Link>
-
-              <Link className="" to="/register">
-                <span className=" text-white">회원가입</span>
-              </Link>
+              {isLogin ? (
+                <>
+                  {" "}
+                  <Link className="py-5 px-3" to="/history">
+                    <span className=" text-white">히스토리</span>
+                  </Link>
+                  <Link className="" onClick={logout} to="/">
+                    <span className=" text-white">로그아웃</span>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <Link className="py-5 px-3" to="/login">
+                    <span className=" text-white">로그인</span>
+                  </Link>
+                  <Link className="" to="/register">
+                    <span className=" text-white">회원가입</span>
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* 모바일 */}
@@ -59,20 +83,41 @@ function CommonNavbar() {
 
         {/* 모바일 Toggle메뉴 */}
         {menuToggle ? (
-          <div className="md:hidden opacity-1">
-            <Link
-              className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
-              to="/login"
-            >
-              <span className="text-white">로그인</span>
-            </Link>
-
-            <Link
-              className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
-              to="/register"
-            >
-              <span className="text-white">회원가입</span>
-            </Link>
+          <div className="text-center bg-navbarColor  border-black opacity=80 md:hidden opacity-1">
+            {isLogin ? (
+              <>
+                {" "}
+                <Link
+                  className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
+                  to="/history"
+                >
+                  <span className="text-white">히스토리</span>
+                </Link>
+                <Link
+                  className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
+                  to="/"
+                  onClick={logout}
+                >
+                  <span className="text-white ">로그아웃</span>
+                </Link>
+              </>
+            ) : (
+              <>
+                {" "}
+                <Link
+                  className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
+                  to="/login"
+                >
+                  <span className="text-white">로그인</span>
+                </Link>
+                <Link
+                  className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
+                  to="/register"
+                >
+                  <span className="text-white">회원가입</span>
+                </Link>
+              </>
+            )}
           </div>
         ) : null}
       </nav>
