@@ -4,7 +4,7 @@ import Mainpage from "./pages/Mainpage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HistoryPage from "pages/HistoryPage";
-import AuthRoute from "./hoc/AuthRoute";
+import AuthRoute from "./utils/AuthRoute";
 
 function App() {
   return (
