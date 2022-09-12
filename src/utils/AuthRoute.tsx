@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import CheckToken from "./CheckToken";
 
 interface AuthRouteProps {
   option: boolean;
@@ -9,12 +9,12 @@ interface AuthRouteProps {
 // false => 로그인한 유저는 출입 불가능
 
 export function AuthRoute({ option }: AuthRouteProps) {
-  const accessToken = useSelector((state: any) => state.Auth.accessToken); //향후 토큰의 유효성을 체크하도록 코드 변경 (지금은 토큰값의 유무로 판별)
   const navigate = useNavigate();
-
+  console.log("cehck");
   useEffect(() => {
     (async () => {
-      if (accessToken == null) {
+      if (CheckToken()) {
+        console.log("cehck");
         if (option) {
           //option이 true일때 로그인으로 강제 이동
           window.alert("로그인이 만료되었습니다.");
