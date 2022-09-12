@@ -1,6 +1,4 @@
-const LOGIN = "user_login";
-const LOGOUT = "user_logout";
-const REFRESH = "renew_refreshToken";
+import { GET_AUTH, RESET_AUTH, REFRESH_AUTH } from "../../utils/types";
 
 const AuthInitialState = {
   accessToken: null,
@@ -10,32 +8,31 @@ const AuthInitialState = {
 
 export const login_sucess = (data: any) => ({
   //redux의 action 향후 분리필요
-  type: LOGIN,
+  type: GET_AUTH,
   data,
 });
 
-export const log_out = () => ({
+export const reset_auth = () => ({
   //redux의 action 향후 분리필요
-  type: LOGOUT,
+  type: RESET_AUTH,
 });
 
 export const AuthReducer = (state = AuthInitialState, action: any) => {
   switch (action.type) {
-    case LOGIN:
+    case GET_AUTH:
       return {
         ...state,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
         expiredTime: action.data.accessTokenExpiresIn,
-        userEmail: "tempEmail", //임시값, api붙이면 추가 설정 필요
       };
 
-    case LOGOUT:
+    case RESET_AUTH:
       return {
         state: AuthInitialState,
       };
 
-    case REFRESH:
+    case REFRESH_AUTH:
       return {
         ...state,
         accessToken: action.data.accessToken,

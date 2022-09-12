@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { log_out } from "../redux/reducers/AuthReducer";
+import { reset_auth } from "../redux/reducers/AuthReducer";
 /**
  * @name : Teawon
  * @component : 상단의 메뉴를 나타내는 Navbar입니다. 화면이 줄어들면 Toggle버튼을 눌러 메뉴로 이동합니다.
@@ -15,7 +15,7 @@ function CommonNavbar() {
   );
 
   const logout = async () => {
-    await dispatch(log_out());
+    await dispatch(reset_auth());
     alert("로그아웃 되셨습니다.");
   };
 
