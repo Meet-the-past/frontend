@@ -22,6 +22,7 @@ function CommonNavbar() {
     await dispatch(reset_auth());
     dispatch(reset_userInfo());
     alert("로그아웃 되셨습니다.");
+    window.location.replace("/");
   };
 
   return (
@@ -47,7 +48,7 @@ function CommonNavbar() {
                   <Link className="py-5 px-3" to="/history">
                     <span className=" text-white">히스토리</span>
                   </Link>
-                  <Link className="" onClick={logout} to="/">
+                  <Link className="" onClick={logout} to="#">
                     <span className=" text-white">로그아웃</span>
                   </Link>
                 </>
@@ -100,7 +101,7 @@ function CommonNavbar() {
                 </Link>
                 <Link
                   className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
-                  to="/"
+                  to="#"
                   onClick={logout}
                 >
                   <span className="text-white ">로그아웃</span>
