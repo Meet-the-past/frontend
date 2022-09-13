@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { ValidationAccessToken, RequestRefreshToken } from "./ManagementToken";
 import { useSelector, useDispatch } from "react-redux";
-import { reset_auth, login_sucess } from "../redux/reducers/AuthReducer";
-
+import { reset_auth, login_sucess } from "../redux/actions/AuthActions";
+import { reset_userInfo } from "../redux/actions/UserInfoActions";
 interface AuthRouteProps {
   needLogin: boolean;
 }
@@ -48,6 +48,7 @@ export function AuthRoute({ needLogin }: AuthRouteProps) {
             .catch((error) => {
               console.log(error);
               dispatch(reset_auth()); //실패시 (refreshToken만료) 값 지움
+              dispatch(reset_userInfo());
               LoginRoute(needLogin);
             });
         }

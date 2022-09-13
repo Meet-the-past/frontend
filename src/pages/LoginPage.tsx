@@ -6,7 +6,8 @@ import FormButton from "../components/FormButton";
 import axios from "../utils//axios";
 
 import { useDispatch } from "react-redux";
-import { login_sucess, get_email } from "../redux/reducers/AuthReducer";
+import { login_sucess } from "../redux/actions/AuthActions";
+import { get_email } from "../redux/actions/UserInfoActions";
 
 import peopleIcon from "../assets/images/peopleIcon.svg";
 import passwordIcon from "../assets/images/passwordIcon.svg";
