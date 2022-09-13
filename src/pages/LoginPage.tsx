@@ -36,7 +36,7 @@ function LoginPage() {
       })
       .then(function (response) {
         dispatch(login_sucess(response.data));
-        dispatch(get_email("temp_Email"));
+        dispatch(get_email("test@naver.com"));
         navigate("/");
       })
       .catch(function (error) {

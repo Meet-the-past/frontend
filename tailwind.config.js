@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         navbarColor: "#B49C72",
         textColor: "#6A5B3D",
-        navbarColorToggle: "#FFD8A9",
+        navbarHoverColor: "#CCB284",
         mainPageBackground: "#A68F66",
         formBoxColor: "#B49C72",
       },

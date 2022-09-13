@@ -44,21 +44,34 @@ function CommonNavbar() {
             <div className="hidden md:flex items-center space-x-1">
               {isLogin ? (
                 <>
-                  <span className="text-white">{userEmail}</span>{" "}
-                  <Link className="py-5 px-3" to="/history">
+                  <span className="text-gray-200 pr-5">{userEmail}</span>{" "}
+                  <Link
+                    className="py-5 px-3 hover:bg-navbarHoverColor"
+                    to="/history"
+                  >
                     <span className=" text-white">히스토리</span>
                   </Link>
-                  <Link className="" onClick={logout} to="#">
-                    <span className=" text-white">로그아웃</span>
+                  <Link
+                    className="py-5 px-3 hover:bg-navbarHoverColor"
+                    onClick={logout}
+                    to="#"
+                  >
+                    <span className="text-white">로그아웃</span>
                   </Link>
                 </>
               ) : (
                 <>
                   {" "}
-                  <Link className="py-5 px-3" to="/login">
+                  <Link
+                    className="py-5 px-3 hover:bg-navbarHoverColor"
+                    to="/login"
+                  >
                     <span className=" text-white">로그인</span>
                   </Link>
-                  <Link className="" to="/register">
+                  <Link
+                    className="py-5 px-3 hover:bg-navbarHoverColor"
+                    to="/register"
+                  >
                     <span className=" text-white">회원가입</span>
                   </Link>
                 </>
@@ -94,13 +107,13 @@ function CommonNavbar() {
               <>
                 {" "}
                 <Link
-                  className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
+                  className="block py-2 px-6 text-sm hover:bg-navbarHoverColor"
                   to="/history"
                 >
                   <span className="text-white">히스토리</span>
                 </Link>
                 <Link
-                  className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
+                  className="block py-2 px-6 text-sm hover:bg-navbarHoverColor"
                   to="#"
                   onClick={logout}
                 >
@@ -111,13 +124,13 @@ function CommonNavbar() {
               <>
                 {" "}
                 <Link
-                  className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
+                  className="block py-2 px-6 text-sm hover:bg-navbarHoverColor"
                   to="/login"
                 >
                   <span className="text-white">로그인</span>
                 </Link>
                 <Link
-                  className="block py-2 px-6 text-sm hover:bg-navbarColorToggle"
+                  className="block py-2 px-6 text-sm hover:bg-navbarHoverColor"
                   to="/register"
                 >
                   <span className="text-white">회원가입</span>
