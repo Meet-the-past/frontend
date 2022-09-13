@@ -1,9 +1,4 @@
-import {
-  GET_EMAIL,
-  GET_AUTH,
-  RESET_AUTH,
-  REFRESH_AUTH,
-} from "../../utils/types";
+import { GET_AUTH, RESET_AUTH, REFRESH_AUTH } from "../../utils/types";
 
 const AuthInitialState = {
   accessToken: null,

@@ -14,6 +14,9 @@ function CommonNavbar() {
   const [isLogin] = useState(
     useSelector((state: any) => state.Auth.accessToken) != null
   );
+  const [userEmail] = useState<string>(
+    useSelector((state: any) => state.User.email)
+  );
 
   const logout = async () => {
     await dispatch(reset_auth());
@@ -40,7 +43,7 @@ function CommonNavbar() {
             <div className="hidden md:flex items-center space-x-1">
               {isLogin ? (
                 <>
-                  {" "}
+                  <span className="text-white">{userEmail}</span>{" "}
                   <Link className="py-5 px-3" to="/history">
                     <span className=" text-white">히스토리</span>
                   </Link>
