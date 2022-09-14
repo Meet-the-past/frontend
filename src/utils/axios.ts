@@ -23,5 +23,5 @@ const authApi = (url: string, options: any = null) => {
   });
 };
 
-export const defaultInstance = commonApi(BASEURL); //Header에 토큰을 필요로 하지 않을 때 사용
-export const authInstance = authApi(BASEURL); //Header에서 토큰을 필요로 할 때 사용
+export const defaultAxios = commonApi(BASEURL); //Header에 토큰을 필요로 하지 않을 때 사용
+export const authAxios = authApi(BASEURL); //Header에서 토큰을 필요로 할 때 사용

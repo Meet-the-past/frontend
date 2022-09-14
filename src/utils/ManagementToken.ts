@@ -1,4 +1,4 @@
-import { defaultInstance } from "./axios";
+import { defaultAxios } from "./axios";
 
 const ValidationAccessToken = (tokenData: any) => {
   if (tokenData.accessToken) {
@@ -12,7 +12,7 @@ const ValidationAccessToken = (tokenData: any) => {
 };
 
 const RequestRefreshToken = async (tokenData: any) => {
-  return await defaultInstance({
+  return await defaultAxios({
     method: "post",
     url: `auth/reissue`,
     data: {
