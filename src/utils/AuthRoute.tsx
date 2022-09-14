@@ -4,11 +4,13 @@ import { ValidationAccessToken, RequestRefreshToken } from "./ManagementToken";
 import { useSelector, useDispatch } from "react-redux";
 import { reset_auth, login_sucess } from "../redux/actions/AuthActions";
 import { reset_userInfo } from "../redux/actions/UserInfoActions";
+
+/**
+ * @param needLogin - true => 로그인한 유저만 출입 // false => 로그인한 유저는 출입 X
+ */
 interface AuthRouteProps {
   needLogin: boolean;
 }
-// true => 로그인한 유저만 출입
-// false => 로그인한 유저는 출입 X
 
 export function AuthRoute({ needLogin }: AuthRouteProps) {
   const dispatch = useDispatch();

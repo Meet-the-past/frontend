@@ -18,6 +18,11 @@ function CommonNavbar() {
     useSelector((state: any) => state.User.email)
   );
 
+  /**
+   * @name : Teawon
+   * @function logout: 로그아웃 시 redux값 갱신 및 라우팅 이동
+   * @create-date 2022-09-13
+   */
   const logout = async () => {
     await dispatch(reset_auth());
     dispatch(reset_userInfo());
