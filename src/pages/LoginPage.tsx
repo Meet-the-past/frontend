@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import CommonNavbar from "../components/CommonNavbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormInputBox from "../components/FormInputBox";
 import FormButton from "../components/FormButton";
+import { defaultAxios } from "../utils//axios";
+
+import { useDispatch } from "react-redux";
+import { login_sucess } from "../redux/actions/AuthActions";
+import { get_email } from "../redux/actions/UserInfoActions";
 
 import peopleIcon from "../assets/images/peopleIcon.svg";
 import passwordIcon from "../assets/images/passwordIcon.svg";
 
 function LoginPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -16,6 +24,25 @@ function LoginPage() {
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  const requestLogin = () => {
+    //null값이라면 예외처리코드 추가
+
+    defaultAxios
+      .post(`/auth/new`, {
+        email: userInfo.email,
+        password: userInfo.password,
+      })
+      .then(function (response) {
+        dispatch(login_sucess(response.data));
+        dispatch(get_email("test@naver.com"));
+        navigate("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+        window.alert("로그인 실패, Log 확인해주세요");
+      });
   };
 
   return (
@@ -31,7 +58,7 @@ function LoginPage() {
             <FormInputBox
               text={userInfo.email}
               onChange={handleChange}
-              placeholder="E-mail"
+              placeholder="email"
               icon={peopleIcon}
             />
             <FormInputBox
@@ -47,6 +74,7 @@ function LoginPage() {
               height="h-12"
               width="w-3/5"
               color="gray"
+              onClick={requestLogin}
             />
 
             <p className="my-10 text-center text-xl font-bold text-textColor">

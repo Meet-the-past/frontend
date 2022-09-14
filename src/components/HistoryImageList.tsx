@@ -5,7 +5,10 @@ import ImageBlock from "../components/ImageBlock";
 import { ImageDto } from "../utils/types";
 import leftArrowIcon from "../assets/images/leftArrowIcon.svg";
 import rightArrowIcon from "../assets/images/rightArrowIcon.svg";
-
+/**
+ * @name : Teawon
+ * @component : historyPage에서 사용하는 이미지들의 리스트 컴포넌트
+ */
 function HistoryImageList() {
   const [imageList, setImageList] = useState<ImageDto[]>([]); // history이미지 리스트
   const [currentPage, setCurrentPage] = useState<number>(1); //현재 페이지
@@ -15,19 +18,29 @@ function HistoryImageList() {
   const indexOfLastVideo = currentPage * maxCountPerPage;
   const indexOfFirstVideo = indexOfLastVideo - maxCountPerPage;
 
+  /**
+   * @name : Teawon
+   * @function deleteImage: 특정 이미지를 삭제 (향후 axios를 통한 api연결 필요)
+   *  * @update-date 2022-09-13
+   */
   const deleteImage = (id: number) => {
     setImageList(
       imageList.filter((historyImg: ImageDto) => historyImg.image_id !== id)
     );
   };
 
+  /**
+   * @name : Teawon
+   * @function currentImageList: 전체 이미지리스트 중 한 화면에 보여줄 이미지들을 잘라 return
+   *  * @update-date 2022-09-13
+   */
   const currentImageList = (characterImage: ImageDto[]) => {
     return characterImage.slice(indexOfFirstVideo, indexOfLastVideo);
   };
 
   useEffect(() => {
     const fetchData = () => {
-      //향후 axios를 통해 값 가져오기
+      //향후 axios를 통해 값 가져오기 (지금은 고정값)
       setImageList([
         {
           image_id: 1,
