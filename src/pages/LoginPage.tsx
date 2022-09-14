@@ -3,7 +3,7 @@ import CommonNavbar from "../components/CommonNavbar";
 import { Link, useNavigate } from "react-router-dom";
 import FormInputBox from "../components/FormInputBox";
 import FormButton from "../components/FormButton";
-import axios from "../utils//axios";
+import { defaultInstance } from "../utils//axios";
 
 import { useDispatch } from "react-redux";
 import { login_sucess } from "../redux/actions/AuthActions";
@@ -29,7 +29,7 @@ function LoginPage() {
   const requestLogin = () => {
     //null값이라면 예외처리코드 추가
 
-    axios
+    defaultInstance
       .post(`/auth/new`, {
         email: userInfo.email,
         password: userInfo.password,
