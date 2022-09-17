@@ -4,6 +4,10 @@ export interface ImageDto {
   after_url: string;
 }
 
+export interface ResultImageDto {
+  origin_url: string;
+  processed_url: string;
+}
 // redux's CONST
 export const GET_AUTH = "LOGIN";
 export const RESET_AUTH = "LOGOUT";

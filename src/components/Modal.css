@@ -14,8 +14,8 @@
 /* modal창 */
 .modalBody {
   position: absolute;
-  width: 130vh;
-  height: 80vh;
+  width: 150vh;
+  height: 90vh;
   padding: 40px;
   text-align: center;
   background-color: rgb(255, 255, 255);

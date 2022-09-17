@@ -22,3 +22,8 @@ body {
   height: 60vh;
   width: 40vh;
 }
+
+.modalImageSize {
+  width: 800vh;
+  height: 60vh;
+}
