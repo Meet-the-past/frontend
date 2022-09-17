@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Mainpage from "./pages/Mainpage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ResultPage from "pages/ResultPage";
 import HistoryPage from "pages/HistoryPage";
 import AuthRoute from "./utils/AuthRoute";
 
@@ -11,6 +12,7 @@ function App() {
     <Routes>
       <Route element={<AuthRoute needLogin={true} />}>
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/result" element={<ResultPage />} />
       </Route>
 
       <Route element={<AuthRoute needLogin={false} />}>
