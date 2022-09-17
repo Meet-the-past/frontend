@@ -13,7 +13,7 @@ export const AuthReducer = (state = AuthInitialState, action: any) => {
         ...state,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
-        expiredTime: action.data.accessTokenExpiresIn,
+        expiredTime: action.data.expiredTime,
       };
 
     case RESET_AUTH:
@@ -26,7 +26,7 @@ export const AuthReducer = (state = AuthInitialState, action: any) => {
         ...state,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
-        expiredTime: action.data.accessTokenExpiresIn,
+        expiredTime: action.data.expiredTime,
       };
     default:
       return state;

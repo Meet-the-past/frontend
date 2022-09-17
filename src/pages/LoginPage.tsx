@@ -30,13 +30,14 @@ function LoginPage() {
     //null값이라면 예외처리코드 추가
 
     defaultAxios
-      .post(`/auth/new`, {
+      .post(`users/auth`, {
         email: userInfo.email,
         password: userInfo.password,
       })
       .then(function (response) {
-        dispatch(login_sucess(response.data));
-        dispatch(get_email("test@naver.com"));
+        console.log(response);
+        dispatch(login_sucess(response.data.result));
+        dispatch(get_email(response.data.result.email));
         navigate("/");
       })
       .catch(function (error) {
