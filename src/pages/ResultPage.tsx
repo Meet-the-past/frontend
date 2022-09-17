@@ -11,11 +11,13 @@ function ResultPage() {
       //향후 axios를 통해 값 가져오기 (지금은 고정값)
       setImgData({
         origin_url:
+          // "https://cdn.crowdpic.net/detail-thumb/thumb_d_2949A746EBDFDBE19879F8F24728B0FC.jpg",
           "https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg",
         after_url:
+          //  "https://cdn.crowdpic.net/detail-thumb/thumb_d_2949A746EBDFDBE19879F8F24728B0FC.jpg",
           "https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg",
       });
-      setIsLoading(true);
+      setIsLoading(false);
     };
 
     fetchData();
@@ -30,16 +32,16 @@ function ResultPage() {
             <Loading text="데이터를 처리중입니다..." />
           ) : (
             <div className="relative">
-              <div className="pr-20 float-left">
+              <div className="pr-32 float-left">
                 <img
-                  className="flex object-cover object-center aspect-square"
+                  className="borderImage flex resultImageSize object-cover object-center aspect-square"
                   alt="sample"
                   src={imgData.origin_url}
                 />
               </div>
-              <div className="pl-20 float-right">
+              <div className="pl-32 float-right">
                 <img
-                  className="flex object-cover object-center aspect-square"
+                  className="borderImage flex resultImageSize object-cover object-center aspect-square"
                   alt="sample"
                   src={imgData.origin_url}
                 />

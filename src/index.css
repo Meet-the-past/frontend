@@ -12,3 +12,13 @@ body {
 .commonHeight {
   min-height: calc(100vh - 4rem);
 }
+
+.borderImage {
+  border: 20px solid #dca56b;
+  border-image: url("//image.ibb.co/dgydgn/wood_frame.png") 50 64;
+}
+
+.resultImageSize {
+  height: 60vh;
+  width: 40vh;
+}
