@@ -13,7 +13,7 @@ export const AuthReducer = (state = AuthInitialState, action: any) => {
         ...state,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
-        expiredTime: action.data.expiredTime,
+        expiredTime: new Date(action.data.expiredTime).getTime(), //Date타입 파싱
       };
 
     case RESET_AUTH:
@@ -25,8 +25,7 @@ export const AuthReducer = (state = AuthInitialState, action: any) => {
       return {
         ...state,
         accessToken: action.data.accessToken,
-        refreshToken: action.data.refreshToken,
-        expiredTime: action.data.expiredTime,
+        expiredTime: new Date(action.data.expiredTime).getTime(),
       };
     default:
       return state;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { ValidationAccessToken, RequestRefreshToken } from "./ManagementToken";
 import { useSelector, useDispatch } from "react-redux";
-import { reset_auth, login_sucess } from "../redux/actions/AuthActions";
+import { reset_auth, renew_auth } from "../redux/actions/AuthActions";
 import { reset_userInfo } from "../redux/actions/UserInfoActions";
 
 /**
@@ -41,10 +41,10 @@ export function AuthRoute({ needLogin }: AuthRouteProps) {
           NotLoginRoute(needLogin);
         } else {
           //accessToken이 만료
-          RequestRefreshToken(authData) //refreshToken재발급 요청
+          RequestRefreshToken() //refreshToken재발급 요청
             .then((response) => {
               console.log(response);
-              dispatch(login_sucess(response.data)); //성공시 redux전역변수 값 변경
+              dispatch(renew_auth(response.data)); //성공시 redux전역변수 값 변경
               NotLoginRoute(needLogin);
             })
             .catch((error) => {
