@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { reset_auth } from "../redux/actions/AuthActions";
-import { reset_userInfo } from "../redux/actions/UserInfoActions";
+import React from "react";
+
 /**
  * @name : Teawon
- * @component : 상단의 메뉴를 나타내는 Navbar입니다. 화면이 줄어들면 Toggle버튼을 눌러 메뉴로 이동합니다.
- * @create-date 2022-09-05
+ * @component : 특정 이미지 url값을 받아 데이터를 다운받을 수 있는 버튼
+ * @create-date 2022-09-17
  */
 /**
  * @param image_url - 다운로드 받을 이미지 url
