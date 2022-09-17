@@ -1,7 +1,7 @@
 import axios from "axios";
 import store from "../redux/configStore";
 
-const BASEURL = "http://3.39.75.19:8080/api/v1/"; //향후 backend이름으로 분리하기 (지금은 임시로 타 서버의 데이터를 이용)
+const BASEURL = "http://localhost:8000/api/v1/"; //향후 backend이름으로 분리하기 (지금은 임시로 타 서버의 데이터를 이용)
 
 const commonApi = (url: string, options: any = null) => {
   return axios.create({
