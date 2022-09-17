@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CommonNavbar from "../components/CommonNavbar";
+import Loading from "../components/Loading";
 
 function ResultPage() {
   const [isLoding, setIsLoading] = useState<boolean>(true); // AI처리 로딩 여부
@@ -14,7 +15,7 @@ function ResultPage() {
         after_url:
           "https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg",
       });
-      setIsLoading(false);
+      setIsLoading(true);
     };
 
     fetchData();
@@ -25,7 +26,9 @@ function ResultPage() {
       <CommonNavbar />
       <div className="bg-[url('../public/assets/images/background-1.png')]">
         <div className="flex justify-center items-center commonHeight">
-          {isLoding ? null : (
+          {isLoding ? (
+            <Loading text="데이터를 처리중입니다..." />
+          ) : (
             <div className="relative">
               <div className="pr-20 float-left">
                 <img
