@@ -1,5 +1,7 @@
 import React from "react";
+import { authAxios } from "../utils/axios";
 import { ImageDto } from "../utils/types";
+
 import xButtonIcon from "../assets/images/xIcon.svg";
 
 /**
@@ -13,7 +15,7 @@ import xButtonIcon from "../assets/images/xIcon.svg";
  * @param imageInfo - 특정 이미지에 대한 정보 (id, url)가 담겨있는 DTO
  */
 interface ImageBlockProps {
-  deleteImageFuc: (id: number) => void;
+  deleteImageFuc: (id: string) => void;
   imageInfo: ImageDto;
 }
 
@@ -42,7 +44,17 @@ function ImageBlock({ deleteImageFuc, imageInfo }: ImageBlockProps) {
    * @function deleteConfirm: 팝업창에서 확인 시 삭제함수 실행
    *  * @update-date 2022-09-13
    */
+  const deleteRequest = async (image_id: string) => {
+    await authAxios
+      .delete(`images/${image_id}`, {})
+      .then(function (response) {})
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   const deleteConfirm = () => {
+    deleteRequest(imageInfo.image_id);
     deleteImageFuc(imageInfo.image_id);
   };
 

@@ -27,7 +27,7 @@ function HistoryImageList() {
    * @function deleteImage: 특정 이미지를 삭제 (향후 axios를 통한 api연결 필요)
    *  * @update-date 2022-09-13
    */
-  const deleteImage = (id: number) => {
+  const deleteImage = (id: string) => {
     setImageList(
       imageList.filter((historyImg: ImageDto) => historyImg.image_id !== id)
     );
