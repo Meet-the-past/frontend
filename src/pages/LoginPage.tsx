@@ -3,7 +3,7 @@ import CommonNavbar from "../components/CommonNavbar";
 import { Link, useNavigate } from "react-router-dom";
 import FormInputBox from "../components/FormInputBox";
 import FormButton from "../components/FormButton";
-import { defaultAxios } from "../utils//axios";
+import { defaultAxios } from "../utils/axios";
 
 import { useDispatch } from "react-redux";
 import { login_sucess } from "../redux/actions/AuthActions";
