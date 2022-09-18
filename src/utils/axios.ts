@@ -4,8 +4,6 @@ import store from "../redux/configStore";
 const BASEURL = "http://localhost:8000/api/v1/";
 
 const commonApi = (url: string, options: any = null) => {
-  const authData = store.getState();
-  console.log(authData);
   return axios.create({
     baseURL: url,
     ...options,
