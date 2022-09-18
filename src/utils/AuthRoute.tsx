@@ -43,7 +43,6 @@ export function AuthRoute({ needLogin }: AuthRouteProps) {
           //accessToken이 만료
           RequestRefreshToken() //refreshToken재발급 요청
             .then((response) => {
-              console.log(response);
               dispatch(renew_auth(response.data)); //성공시 redux전역변수 값 변경
               NotLoginRoute(needLogin);
             })

@@ -24,8 +24,8 @@ export const AuthReducer = (state = AuthInitialState, action: any) => {
     case REFRESH_AUTH:
       return {
         ...state,
-        accessToken: action.data.accessToken,
-        expiredTime: new Date(action.data.expiredTime).getTime(),
+        accessToken: action.data.access_Token,
+        expiredTime: new Date(action.data.expiredTime).getTime(), //향후 backendResponse수정 및 프론트코드 바꾸기
       };
     default:
       return state;
