@@ -6,8 +6,7 @@ export const task_start = (data: any) => ({
   data,
 });
 
-export const task_end = (data: any) => ({
+export const task_end = () => ({
   //로그인 성공시 토큰정보 갱신
   type: DELETE_TASK_ID,
-  data,
 });
