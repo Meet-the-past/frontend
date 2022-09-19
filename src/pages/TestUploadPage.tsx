@@ -1,21 +1,21 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { defaultAxios } from "../utils/axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { task_start } from "../redux/actions/TaskActions";
 
 function VideoUploadPage() {
   const fileInput = useRef<any>(); // 외부 이미지 클릭 시  <input>가 눌리도록 설정하기 위한 변수
-  const [imageObject, setImageObject] = useState<any>(); //화면에 보여 줄 비디오 오브젝트
+  const [imageObject, setImageObject] = useState<any>(); //화면에 보여 줄 이미지 오브젝트
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const saveFile = (event: any) => {
     setImageObject(event.target.files[0]);
   };
 
-  /**
-   * @name : Teawon
-   * @function :makeFormData - 입력한 동영상파일을 보낸 후 해당 url을 받아 세션에 저장하는 함수
-   * @create-data: 2022-07-21
-   */
   const makeFormData = () => {
-    //만약 기존에 저장된영상이 있다면 추가로 보내지 않는다.
     const formData = new FormData();
     formData.append("filename", imageObject);
 
@@ -23,17 +23,14 @@ function VideoUploadPage() {
       .post(`images/`, formData)
       .then(function (response) {
         console.log(response.data);
+        dispatch(task_start(response.data.task_id));
+        navigate("/result");
       })
       .catch(function (error) {
+        alert("제대로된 이미지 맞아요?");
         console.log(error);
       });
   };
-
-  /**
-   * @name : Teawon
-   * @function :useEffect - 세션에 저장된 값이 있다면 (기존에 업로드한 영상이 있다면) 해당 값을 가져와서 사용한다
-   * @create-data: 2022-07-21
-   */
 
   return (
     <div>
@@ -42,9 +39,10 @@ function VideoUploadPage() {
       </div>
 
       <div className="wrapVideo">
-        {imageObject ? ( //입력된 비디오파일이 있다면 드롭박스를 숨기고 파일업로드 버튼이 생기도록 함
+        {imageObject ? (
           <div className="w-7/12">
             <img
+              alt="images"
               className="w-full h-full"
               id="video"
               src={window.URL.createObjectURL(imageObject)}
