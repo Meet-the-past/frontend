@@ -49,26 +49,28 @@ function UploadPage() {
       <div className="flex bg-[url('../public/assets/images/background-1.png')] w-full h-92">
         <div
           className="bg-white rounded-md my-16 mx-12 w-full flex flex-col justify-center"
-          style={{ height: 500, color: "#561D1D" }}
+          style={{ height: 500 }}
         >
-          <button className="flex justify-center border-2 rounded-lg mx-16 my-8 py-36">
-            <img src={urlImg}></img>
-            <input
-              type="file"
-              hidden
-              required
-              onChange={(e) => onChangeImage(e)}
-            />
-            {isImg ? null : (
-              <div>
-                {" "}
-                <CloudUploadIcon className="flex" />
-                <div style={{ color: "#561D1D" }}>Click to Upload</div>
-              </div>
-            )}
-          </button>
-          <p className="text-center text-xl">이미지를 복원하시겠습니까?</p>
-          <FormButton text="네" height="h-10" width="w-20" color="#8F7C5A" />
+          <form>
+            <button className="flex justify-center border-2 rounded-lg mx-16 my-8 py-36">
+              <img src={urlImg}></img>
+              <input
+                type="file"
+                hidden
+                required
+                onChange={(e) => onChangeImage(e)}
+              />
+              {isImg ? null : (
+                <div className="flex flex-col justify-items-center">
+                  {" "}
+                  <CloudUploadIcon className="justify-items-center" />
+                  <div style={{ color: "#561D1D" }}>Click to Upload</div>
+                </div>
+              )}
+            </button>
+            <p className="text-center text-xl">이미지를 복원하시겠습니까?</p>
+            <FormButton text="네" height="h-10" width="w-20" color="#8F7C5A" />
+          </form>
         </div>
       </div>
     </div>
