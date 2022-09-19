@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { defaultAxios } from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { task_start } from "../redux/actions/TaskActions";
+import { task_end, task_start } from "../redux/actions/TaskActions";
 
 function VideoUploadPage() {
   const fileInput = useRef<any>(); // 외부 이미지 클릭 시  <input>가 눌리도록 설정하기 위한 변수
@@ -13,6 +13,10 @@ function VideoUploadPage() {
 
   const saveFile = (event: any) => {
     setImageObject(event.target.files[0]);
+  };
+
+  const deleteTaskId = () => {
+    dispatch(task_end());
   };
 
   const makeFormData = () => {
@@ -35,7 +39,20 @@ function VideoUploadPage() {
   return (
     <div>
       <div className="fixed bottom-0 right-0 p-5">
-        <button onClick={makeFormData}> 이미지 업로드</button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          onClick={makeFormData}
+        >
+          {" "}
+          이미지 업로드
+        </button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          onClick={deleteTaskId}
+        >
+          {" "}
+          taskId삭제 (기능구현 테스트버튼)
+        </button>
       </div>
 
       <div className="wrapVideo">

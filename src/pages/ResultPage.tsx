@@ -2,10 +2,18 @@ import React, { useState, useEffect } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import Loading from "../components/Loading";
 import Modal from "components/Modal";
+import { useNavigate } from "react-router-dom";
 import DownloadImageButton from "components/DownloadImageButton";
+
+import { useSelector, useDispatch } from "react-redux";
+import { reset_auth, renew_auth } from "../redux/actions/AuthActions";
+
 import { ResultImageDto } from "../utils/types";
 
 function ResultPage() {
+  const taskId = useSelector((state: any) => state.Task.task_id);
+  const navigate = useNavigate();
+
   const [isLoding, setIsLoading] = useState<boolean>(true); // AI처리 로딩 여부
   const [imgData, setImgData] = useState<ResultImageDto>({
     // 받아올 이미지
@@ -26,6 +34,13 @@ function ResultPage() {
   };
 
   useEffect(() => {
+    const checkValidation = () => {
+      if (taskId == null) {
+        alert("유효하지 않은 접근입니다."); //처리중인 taskId값이 없는데 현재 페이지로 왔을 때
+        navigate("/");
+      }
+    };
+
     const fetchData = () => {
       //향후 axios를 통해 값 가져오기 (지금은 고정값), 이미지 크기별 테스트
       setImgData({
@@ -40,7 +55,7 @@ function ResultPage() {
       });
       setIsLoading(true);
     };
-
+    checkValidation();
     fetchData();
   }, []);
 
