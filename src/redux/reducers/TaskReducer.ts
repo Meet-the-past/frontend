@@ -13,7 +13,7 @@ export const TaskReducer = (state = TaskInitialState, action: any) => {
       };
 
     case DELETE_TASK_ID:
-      return { task_id: TaskInitialState };
+      return { state: TaskInitialState };
 
     default:
       return state;

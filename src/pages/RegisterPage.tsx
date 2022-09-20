@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import CommonNavbar from "../components/CommonNavbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FormInputBox from "../components/FormInputBox";
 import FormButton from "../components/FormButton";
+
+import { defaultAxios } from "../utils//axios";
 
 import peopleIcon from "../assets/images/peopleIcon.svg";
 import passwordIcon from "../assets/images/passwordIcon.svg";
@@ -15,6 +17,8 @@ function RegisterPage() {
     password: "",
     passwordConfirm: "",
   });
+
+  const navigate = useNavigate();
 
   //출력할 오류 메세지
   const [emailMessage, setEmailMessage] = useState<string>("");
@@ -44,10 +48,53 @@ function RegisterPage() {
         setEmailMessage("이메일 형식이 유효하지 않습니다.");
         setValidEmail(false);
       } else {
-        setEmailMessage("사용 가능한 이메일입니다.");
-        setValidEmail(true);
+        checkEmailDuplicate();
       }
     }
+  };
+
+  const requestSignup = () => {
+    console.log(validEmail);
+    console.log(validUserName);
+    console.log(validPassword);
+    console.log(validPasswrodConfirm);
+
+    if (validEmail && validUserName && validPassword && validPasswrodConfirm) {
+      defaultAxios
+        .post(`/users/create`, {
+          email: userInfo.email,
+          password: userInfo.password,
+          name: userInfo.userName,
+        })
+        .then(function (response) {
+          console.log("성공");
+          window.alert("정상적으로 회원가입되었습니다.");
+          navigate("/login");
+        })
+        .catch(function (error) {
+          console.log(error);
+          window.alert("회원가입 실패, Log 확인해주세요");
+        });
+    } else {
+      window.alert("입력창을 다시 확인해주세요.");
+    }
+  };
+
+  const checkEmailDuplicate = () => {
+    defaultAxios
+      .post(`/users/email/validation`, {
+        email: userInfo.email,
+      })
+      .then(function (response) {
+        console.log("성공");
+        setEmailMessage("사용 가능한 이메일입니다.");
+        setValidEmail(true);
+      })
+      .catch(function (error) {
+        setEmailMessage("사용중인 이메일 입니다.");
+        setValidEmail(false);
+        console.log("실패");
+      });
   };
 
   const checkUserName = () => {
@@ -154,6 +201,7 @@ function RegisterPage() {
               height="h-12"
               width="w-3/5"
               color="gray"
+              onClick={requestSignup}
             />
 
             <p className="my-10 text-center text-xl font-bold text-textColor">

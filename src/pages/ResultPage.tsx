@@ -2,10 +2,20 @@ import React, { useState, useEffect } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import Loading from "../components/Loading";
 import Modal from "components/Modal";
+import { useNavigate } from "react-router-dom";
 import DownloadImageButton from "components/DownloadImageButton";
+
+import { authAxios } from "../utils/axios";
+import { useSelector, useDispatch } from "react-redux";
+import { task_end } from "../redux/actions/TaskActions";
+
 import { ResultImageDto } from "../utils/types";
 
 function ResultPage() {
+  const taskId = useSelector((state: any) => state.Task.task_id);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [isLoding, setIsLoading] = useState<boolean>(true); // AI처리 로딩 여부
   const [imgData, setImgData] = useState<ResultImageDto>({
     // 받아올 이미지
@@ -26,22 +36,56 @@ function ResultPage() {
   };
 
   useEffect(() => {
-    const fetchData = () => {
-      //향후 axios를 통해 값 가져오기 (지금은 고정값), 이미지 크기별 테스트
-      setImgData({
-        origin_url:
-          // "https://cdn.crowdpic.net/detail-thumb/thumb_d_2949A746EBDFDBE19879F8F24728B0FC.jpg",
-          "https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg",
-        processed_url:
-          //  "https://cdn.crowdpic.net/detail-thumb/thumb_d_2949A746EBDFDBE19879F8F24728B0FC.jpg",
-          //"https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg",
-          //"https://upload.wikimedia.org/wikipedia/en/6/6b/Hello_Web_Series_%28Wordmark%29_Logo.png",
-          "http://i.imgur.com/A3f9Xyj.gif",
-      });
-      setIsLoading(true);
+    const checkValidation = () => {
+      if (taskId == null) {
+        alert("유효하지 않은 접근입니다."); //처리중인 taskId값이 없는데 현재 페이지로 왔을 때
+        navigate("/");
+      }
     };
 
-    fetchData();
+    const getResult: () => Promise<any> = async () => {
+      const checkResult = () => {
+        authAxios
+          .get(`images/ASd/results/tasks/${taskId}`)
+          .then((response) => {
+            console.log(response.data);
+
+            if (response.data.image_id === 999999) {
+              console.log("성공 if문 진입");
+              //   setImgData({
+              //     origin_url: response.data.origin_url,
+              //     processed_url: response.data.processed_url,
+              //   });
+              clearInterval(timer);
+              setIsLoading(false);
+            }
+          })
+          .catch((error) => {
+            console.log("Error발생");
+            dispatch(task_end());
+            clearInterval(timer);
+          });
+      };
+      const timer = setInterval(checkResult, 2000);
+      return () => clearInterval(timer);
+    };
+
+    // const fetchData = () => {
+    //   //향후 axios를 통해 값 가져오기 (지금은 고정값), 이미지 크기별 테스트
+    //   setImgData({
+    //     origin_url:
+    //       // "https://cdn.crowdpic.net/detail-thumb/thumb_d_2949A746EBDFDBE19879F8F24728B0FC.jpg",
+    //       "https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg",
+    //     processed_url:
+    //       //  "https://cdn.crowdpic.net/detail-thumb/thumb_d_2949A746EBDFDBE19879F8F24728B0FC.jpg",
+    //       //"https://www.adobe.com/content/dam/cc/us/en/creative-cloud/photography/discover/landscape-photography/CODERED_B1_landscape_P2d_714x348.jpg.img.jpg",
+    //       //"https://upload.wikimedia.org/wikipedia/en/6/6b/Hello_Web_Series_%28Wordmark%29_Logo.png",
+    //       "http://i.imgur.com/A3f9Xyj.gif",
+    //   });
+    //   setIsLoading(true);
+    // };
+    checkValidation();
+    getResult();
   }, []);
 
   return (

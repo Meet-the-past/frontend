@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ResultPage from "pages/ResultPage";
 import HistoryPage from "pages/HistoryPage";
 import AuthRoute from "./utils/AuthRoute";
+import TestUploadPage from "./pages/TestUploadPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       </Route>
 
       <Route path="/" element={<Mainpage />} />
+      <Route path="/test-upload" element={<TestUploadPage />} />
     </Routes>
   );
 }
