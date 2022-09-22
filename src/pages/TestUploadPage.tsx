@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { defaultAxios } from "../utils/axios";
+import { authAxios } from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { task_end, task_start } from "../redux/actions/TaskActions";
@@ -23,7 +23,7 @@ function VideoUploadPage() {
     const formData = new FormData();
     formData.append("filename", imageObject);
 
-    defaultAxios
+    authAxios
       .post(`images/`, formData)
       .then(function (response) {
         console.log(response.data);

@@ -29,7 +29,7 @@ function HistoryImageList() {
    */
   const deleteImage = (id: string) => {
     setImageList(
-      imageList.filter((historyImg: ImageDto) => historyImg.image_id !== id)
+      imageList.filter((historyImg: ImageDto) => historyImg.id !== id)
     );
   };
 
@@ -45,7 +45,7 @@ function HistoryImageList() {
   useEffect(() => {
     const fetchData = async () => {
       await authAxios
-        .post(`images/list/history`, {})
+        .get(`images/list/history`, {})
         .then(function (response) {
           setImageList(response.data.data);
           setIsLoading(false);
@@ -151,7 +151,7 @@ function HistoryImageList() {
                     {imageList &&
                       currentImageList(imageList).map((img: ImageDto) => (
                         <ImageBlock
-                          key={img.image_id}
+                          key={img.id}
                           imageInfo={img}
                           deleteImageFuc={deleteImage}
                         />

@@ -46,16 +46,16 @@ function ResultPage() {
     const getResult: () => Promise<any> = async () => {
       const checkResult = () => {
         authAxios
-          .get(`images/ASd/results/tasks/${taskId}`)
+          .get(`images/results/tasks/${taskId}`)
           .then((response) => {
             console.log(response.data);
 
-            if (response.data.image_id === 999999) {
+            if (response.data.data !== "RUNNING") {
               console.log("성공 if문 진입");
-              //   setImgData({
-              //     origin_url: response.data.origin_url,
-              //     processed_url: response.data.processed_url,
-              //   });
+              setImgData({
+                origin_url: response.data.data.origin_url,
+                processed_url: response.data.data.converted_url,
+              });
               clearInterval(timer);
               setIsLoading(false);
             }
@@ -117,7 +117,7 @@ function ResultPage() {
 
               <div className="relative">
                 <div
-                  className="pr-32 float-left"
+                  className="pr-32 float-left hover:scale-105"
                   onClick={() => clickEvent(imgData.origin_url)}
                 >
                   <img
@@ -127,7 +127,7 @@ function ResultPage() {
                   />
                 </div>
                 <div
-                  className="pl-32 float-right"
+                  className="pl-32 float-right hover:scale-105"
                   onClick={() => clickEvent(imgData.processed_url)}
                 >
                   <img

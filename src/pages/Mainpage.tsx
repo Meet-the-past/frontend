@@ -3,6 +3,8 @@ import CommonNavbar from "../components/CommonNavbar";
 import CommonFooter from "../components/CommonFooter";
 import { Link } from "react-router-dom";
 
+import useScrollFadeIn from "../utils/useScrollFadeIn";
+
 import Banner from "../assets/images/banner.svg";
 import MainPagePeople1 from "../assets/images/mainPagePeople1.svg";
 import MainPagePeople2 from "../assets/images/mainPagePeople2.svg";
@@ -14,6 +16,10 @@ function Mainpage() {
   const [scrollY, setScrollY] = useState(0); //스크롤 위치 값
   const [scrollButtonStatus, setScrollButtonStatus] = useState(true); //스크롤 상태
 
+  const animatedItem = {
+    0: useScrollFadeIn(1, 0.1),
+    1: useScrollFadeIn(1, 0.1),
+  };
   /**
    * @name : Teawon
    * @function handleScroll : 화면이동에 따른 스크롤 값을 가져오고 일정 값 이상이라면 스크롤 상태를 숨김
@@ -93,7 +99,7 @@ function Mainpage() {
         className="w-full bg-[url('../public/assets/images/background-2.png')]"
       >
         <div className="grid h-screen place-items-center">
-          <div>
+          <div {...animatedItem[0]}>
             <div className="float-center sm:float-left">
               <img
                 className="h-96  m-auto "
@@ -119,7 +125,7 @@ function Mainpage() {
           ref={(el) => (scrollRef.current[1] = el)}
           className="grid place-items-center h-screen"
         >
-          <div>
+          <div {...animatedItem[1]}>
             <div className="float-center sm:float-right ml-5">
               <img
                 className="h-96  m-auto "
