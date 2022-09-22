@@ -1,5 +1,5 @@
 import { GET_AUTH, RESET_AUTH, REFRESH_AUTH } from "../../utils/types";
-
+const KR_TIME_DIFF = 9 * 60 * 60 * 1000; //UTC to KST (UTC + 9시간)
 const AuthInitialState = {
   accessToken: null,
   refreshToken: null,
@@ -13,7 +13,7 @@ export const AuthReducer = (state = AuthInitialState, action: any) => {
         ...state,
         accessToken: action.data.accessToken,
         refreshToken: action.data.refreshToken,
-        expiredTime: new Date(action.data.expiredTime).getTime(), //Date타입 파싱
+        expiredTime: new Date(action.data.expiredTime).getTime() + KR_TIME_DIFF, //Date타입 파싱
       };
 
     case RESET_AUTH:
@@ -25,7 +25,7 @@ export const AuthReducer = (state = AuthInitialState, action: any) => {
       return {
         ...state,
         accessToken: action.data.accessToken,
-        expiredTime: new Date(action.data.expiredTime).getTime(), //향후 backendResponse수정 및 프론트코드 바꾸기
+        expiredTime: new Date(action.data.expiredTime).getTime() + KR_TIME_DIFF, //향후 backendResponse수정 및 프론트코드 바꾸기
       };
     default:
       return state;
