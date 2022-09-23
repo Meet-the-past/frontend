@@ -61,9 +61,9 @@ function ImageBlock({ deleteImageFuc, imageInfo }: ImageBlockProps) {
   const confirmDelete = useConfirm("정말 삭제하시겠습니까?", deleteConfirm);
 
   return (
-    <div className="relative" key={imageInfo.id}>
+    <div className="relative " key={imageInfo.id}>
       <img
-        className="flex object-cover object-center aspect-square"
+        className="flex object-cover borderImage object-center aspect-square"
         alt="sample"
         src={imageInfo.after_url}
       />
