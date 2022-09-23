@@ -25,7 +25,6 @@ function Mainpage() {
    * @function handleScroll : 화면이동에 따른 스크롤 값을 가져오고 일정 값 이상이라면 스크롤 상태를 숨김
    * @create-date 2022-09-08
    */
-
   const handleScroll = () => {
     const scrollPosition = window.pageYOffset;
     setScrollY(scrollPosition);
@@ -76,19 +75,15 @@ function Mainpage() {
           </div>
         )}
 
-        <div className="bg-[url('../public/assets/images/background-1.png')] w-full commonHeight flex">
-          <div className="m-auto">
-            <img
-              className=" rounded-xl w-8/12 m-auto"
-              src={Banner}
-              alt="banner"
-            />
-
-            <div className="text-center">
-              <h1 className="sm:text-6xl text-4xl font-serif font-light text-textColor drop-shadow-md mt-16 mb-5">
+        <div className="w-full commonHeight mainBanner">
+          <div className="m-auto sm:pt-52 sm:pl-20 pt-60 pl-10">
+            <div className="text-left">
+              <h1 className="sm:text-8xl text-6xl font-serif font-light text-white drop-shadow-md">
                 Meet The Past
               </h1>
-              <p>찢기고 구겨진 추억을 되살려드립니다</p>
+              <p className="text-2xl text-white pt-10">
+                찢기고 구겨진 추억을 되살려드립니다
+              </p>
             </div>
           </div>
         </div>
@@ -108,11 +103,11 @@ function Mainpage() {
               />
             </div>
 
-            <div className="pl-10  sm:float-right w-80 m-auto ">
-              <p className="mt-20 text-xl font-bold text-textColor">
+            <div className="pl-10  sm:float-right w-84 m-auto ">
+              <p className="mt-20 text-3xl font-bold text-textColor">
                 보기만 해도 <br></br> 가슴이 아리는 사진이 있습니까?
               </p>
-              <p className="mt-5 mx-auto ">
+              <p className="mt-5 text-xl mx-auto ">
                 소중한 추억이 구겨지는 것 만큼<br></br> 안타까운 일은
                 없을겁니다. <br></br>
                 구겨지고 찢긴 사진을 업로드하세요.
@@ -134,14 +129,15 @@ function Mainpage() {
               />
             </div>
 
-            <div className="pl-10 float-center sm:float-left w-80 m-auto ">
-              <p className="mt-20 text-xl font-bold text-textColor">
+            <div className="pl-10 float-center sm:float-left w-84 m-auto ">
+              <p className="mt-20 text-3xl font-bold text-textColor">
                 누군가의 기억과 가까운 모습으로 <br></br>
                 추억을 되살려드리겠습니다
               </p>
-              <p className="mt-5 mx-auto ">
-                가장 아름답고 사랑스러운 그 순간인 그 시절로 되돌아 간 것처럼
-                도와드립니다 사진을 원형에 가까운 모습으로 복구합니다
+              <p className="mt-5 text-xl mx-auto ">
+                가장 아름답고 사랑스러운 그 순간인 <br></br>그 시절로 되돌아 간
+                것처럼 도와드립니다<br></br> 사진을 원형에 가까운 모습으로
+                복구합니다
               </p>
             </div>
           </div>
