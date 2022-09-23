@@ -4,8 +4,6 @@ import CommonFooter from "../components/CommonFooter";
 import { Link } from "react-router-dom";
 
 import useScrollFadeIn from "../utils/useScrollFadeIn";
-
-import Banner from "../assets/images/banner.svg";
 import MainPagePeople1 from "../assets/images/mainPagePeople1.svg";
 import MainPagePeople2 from "../assets/images/mainPagePeople2.svg";
 import BottomArrowIcon from "../assets/images/bottomArrowIcon.svg";
