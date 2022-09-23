@@ -83,8 +83,8 @@ function UploadPage() {
             <div
               className={
                 imageObject
-                  ? "transform -translate-x-20 duration-1000 float-left w-7/12 m-auto pl-20"
-                  : "transform transition duration-1000 float-center w-7/12 m-auto"
+                  ? "transform -translate-y-10 duration-1000  w-7/12 m-auto"
+                  : "transform transition duration-1000  w-7/12 m-auto"
               }
             >
               {imageObject ? (
@@ -158,8 +158,8 @@ function UploadPage() {
               )}
             </div>
             {imageObject && (
-              <div className="flex h-96 animate-fade-in-down">
-                <div className="float-right m-auto">
+              <div className="flex mt-20 animate-fade-in-down">
+                <div className=" m-auto">
                   <div className="m-auto">
                     <p className="text-center text-3xl">
                       이미지를 복원하시겠습니까?
