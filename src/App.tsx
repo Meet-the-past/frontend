@@ -1,3 +1,5 @@
+import UploadPage from "./pages/UploadPage";
+
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Mainpage from "./pages/Mainpage";
@@ -23,6 +25,7 @@ function App() {
 
       <Route path="/" element={<Mainpage />} />
       <Route path="/test-upload" element={<TestUploadPage />} />
+      <Route path="/upload" element={<UploadPage />} />
     </Routes>
   );
 }
