@@ -131,12 +131,12 @@ function UploadPage() {
                         ></path>
                       </svg>
 
-                      <p className="mb-2 w-80 text-sm text-gray-500 dark:text-gray-400">
+                      <p className="mb-2 w-80 text-sm text-center text-gray-500 dark:text-gray-400">
                         <span className="font-semibold">Click to upload</span>{" "}
                         or drag and drop
                       </p>
                       <p className="text-xs text-gray-500 dark:text-gray-400">
-                        MP4, AVI , WMV , MKV , MOV
+                        JPG, PNG , GIF
                       </p>
                     </div>
                     <input
@@ -151,22 +151,24 @@ function UploadPage() {
                 </div>
               )}
             </div>
-            <div className="flex h-96">
-              <div className="float-right m-auto">
-                <div className="m-auto">
-                  <p className="text-center text-3xl">
-                    이미지를 복원하시겠습니까?
-                  </p>
-                  <FormButton
-                    text="네"
-                    height="h-10"
-                    width="w-20"
-                    color="gray"
-                    onClick={requestTaskId}
-                  />
+            {imageObject && (
+              <div className="flex h-96">
+                <div className="float-right m-auto">
+                  <div className="m-auto">
+                    <p className="text-center text-3xl">
+                      이미지를 복원하시겠습니까?
+                    </p>
+                    <FormButton
+                      text="네"
+                      height="h-10"
+                      width="w-20"
+                      color="gray"
+                      onClick={requestTaskId}
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
