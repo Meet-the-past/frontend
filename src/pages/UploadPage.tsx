@@ -80,7 +80,13 @@ function UploadPage() {
           style={{ height: "80vh" }}
         >
           <div>
-            <div className="float-left w-7/12 m-auto">
+            <div
+              className={
+                imageObject
+                  ? "transform -translate-x-20 duration-1000 float-left w-7/12 m-auto pl-20"
+                  : "transform transition duration-1000 float-center w-7/12 m-auto"
+              }
+            >
               {imageObject ? (
                 <div className="ml-20">
                   <img
@@ -152,7 +158,7 @@ function UploadPage() {
               )}
             </div>
             {imageObject && (
-              <div className="flex h-96">
+              <div className="flex h-96 animate-fade-in-down">
                 <div className="float-right m-auto">
                   <div className="m-auto">
                     <p className="text-center text-3xl">
