@@ -21,7 +21,7 @@ function UploadPage() {
     setImageObject(event.target.files[0]);
   };
 
-  const makeFormData = () => {
+  const requestTaskId = () => {
     const formData = new FormData();
     formData.append("filename", imageObject);
 
@@ -82,21 +82,31 @@ function UploadPage() {
           <div>
             <div className="float-left w-7/12 m-auto">
               {imageObject ? (
-                <div className="ml-20 ">
+                <div className="ml-20">
                   <img
-                    className="w-full h-96 object-cover object-center aspect-square"
+                    className="w-full h-96 object-cover object-center aspect-square border-2"
                     alt="images"
                     src={window.URL.createObjectURL(imageObject)}
                     style={{ margin: "auto" }}
                   ></img>
-                  {/* <div className="videoBtn flex justify-end pb-16">
+                  <div className="absolute videoBtn flex justify-end pb-16">
                     <span
-                      className="uploadButton flex mt-3 mr-3 "
+                      className="uploadButton flex mt-9 mr-3 "
                       onClick={() => fileInput.current.click()}
                     >
-                      <button>CHANGE</button>
+                      <button className="bg-blue-600 hover:bg-blue-400 text-white font-bold rounded-full py-2 px-4">
+                        재 업로드
+                      </button>
                     </span>
-                  </div> */}
+                    <span
+                      className="uploadButton flex mt-9 mr-3 "
+                      onClick={() => setImageObject(null)}
+                    >
+                      <button className="bg-blue-600 hover:bg-blue-400 text-white font-bold rounded-full py-2 px-4">
+                        취소
+                      </button>
+                    </span>
+                  </div>
                 </div>
               ) : (
                 <div className="ml-20">
@@ -152,6 +162,7 @@ function UploadPage() {
                     height="h-10"
                     width="w-20"
                     color="gray"
+                    onClick={requestTaskId}
                   />
                 </div>
               </div>
