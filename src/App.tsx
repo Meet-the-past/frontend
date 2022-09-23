@@ -8,7 +8,6 @@ import RegisterPage from "./pages/RegisterPage";
 import ResultPage from "pages/ResultPage";
 import HistoryPage from "pages/HistoryPage";
 import AuthRoute from "./utils/AuthRoute";
-import TestUploadPage from "./pages/TestUploadPage";
 
 function App() {
   return (
@@ -16,6 +15,7 @@ function App() {
       <Route element={<AuthRoute needLogin={true} />}>
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/result" element={<ResultPage />} />
+        <Route path="/upload" element={<UploadPage />} />
       </Route>
 
       <Route element={<AuthRoute needLogin={false} />}>
@@ -24,8 +24,6 @@ function App() {
       </Route>
 
       <Route path="/" element={<Mainpage />} />
-      <Route path="/test-upload" element={<TestUploadPage />} />
-      <Route path="/upload" element={<UploadPage />} />
     </Routes>
   );
 }
