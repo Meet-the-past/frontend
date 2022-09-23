@@ -77,7 +77,7 @@ function UploadPage() {
       <CommonNavbar />
       <div className="flex bg-[url('../public/assets/images/background-1.png')] w-full commonHeight">
         <div
-          className="bg-white rounded-md m-auto w-11/12 flex flex-col justify-center "
+          className="bg-white bg-opacity-80 rounded-md m-auto w-11/12 flex flex-col justify-center "
           style={{ height: "80vh" }}
         >
           <div>
