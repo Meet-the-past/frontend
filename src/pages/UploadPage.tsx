@@ -2,13 +2,14 @@ import Resizer from "react-image-file-resizer";
 import CommonNavbar from "../components/CommonNavbar";
 import FormButton from "../components/FormButton";
 
-import CloudUploadIcon from "../assets/images/CloudUploadIcon";
+import changeIcon from "../assets/images/changeIcon.svg";
+import cancellIcon from "../assets/images/cancellIcon.svg";
 
 import React, { useRef, useState } from "react";
 import { authAxios } from "../utils/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { task_end, task_start } from "../redux/actions/TaskActions";
+import { task_start } from "../redux/actions/TaskActions";
 
 function UploadPage() {
   const fileInput = useRef<any>(); // 외부 이미지 클릭 시  <input>가 눌리도록 설정하기 위한 변수
@@ -95,22 +96,26 @@ function UploadPage() {
                     src={window.URL.createObjectURL(imageObject)}
                     style={{ margin: "auto" }}
                   ></img>
-                  <div className="absolute videoBtn flex justify-end pb-16">
+                  <div className=" flex justify-end  float-right">
                     <span
-                      className="uploadButton flex mt-9 mr-3 "
+                      className="flex mt-9 mr-3 hover:bg-gray-100"
                       onClick={() => fileInput.current.click()}
                     >
-                      <button className="bg-blue-600 hover:bg-blue-400 text-white font-bold rounded-full py-2 px-4">
-                        재 업로드
-                      </button>
+                      <img
+                        src={changeIcon}
+                        alt="changeIcon"
+                        className="w-8 h-8"
+                      />
                     </span>
                     <span
-                      className="uploadButton flex mt-9 mr-3 "
+                      className="flex mt-9 mr-3 hover:bg-gray-100"
                       onClick={() => setImageObject(null)}
                     >
-                      <button className="bg-blue-600 hover:bg-blue-400 text-white font-bold rounded-full py-2 px-4">
-                        취소
-                      </button>
+                      <img
+                        src={cancellIcon}
+                        alt="cancellIcon"
+                        className="w-8 h-8"
+                      />
                     </span>
                   </div>
                 </div>
@@ -158,7 +163,7 @@ function UploadPage() {
               )}
             </div>
             {imageObject && (
-              <div className="flex mt-20 animate-fade-in-down">
+              <div className="flex float-center mt-20 animate-fade-in-down">
                 <div className=" m-auto">
                   <div className="m-auto">
                     <p className="text-center text-3xl">
