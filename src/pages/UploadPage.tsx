@@ -1,14 +1,42 @@
-import { useState } from "react";
 import Resizer from "react-image-file-resizer";
 import CommonNavbar from "../components/CommonNavbar";
 import FormButton from "../components/FormButton";
 
 import CloudUploadIcon from "../assets/images/CloudUploadIcon";
 
+import React, { useRef, useState } from "react";
+import { authAxios } from "../utils/axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { task_end, task_start } from "../redux/actions/TaskActions";
+
 function UploadPage() {
-  const [isImg, setIsImg] = useState(null);
-  const [urlImg, setUrlImg] = useState("");
-  const [respondImg, setRespondImg] = useState(null);
+  const fileInput = useRef<any>(); // 외부 이미지 클릭 시  <input>가 눌리도록 설정하기 위한 변수
+  const [imageObject, setImageObject] = useState<any>(); //화면에 보여 줄 이미지 오브젝트
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const saveFile = (event: any) => {
+    setImageObject(event.target.files[0]);
+  };
+
+  const makeFormData = () => {
+    const formData = new FormData();
+    formData.append("filename", imageObject);
+
+    authAxios
+      .post(`images/`, formData)
+      .then(function (response) {
+        console.log(response.data);
+        dispatch(task_start(response.data.task_id));
+        navigate("/result");
+      })
+      .catch(function (error) {
+        alert("제대로된 이미지 맞아요?");
+        console.log(error);
+      });
+  };
 
   const resizeFile = (file: Blob) =>
     new Promise((resolve) => {
@@ -26,53 +54,119 @@ function UploadPage() {
       );
     });
 
-  const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    try {
-      const file: any =
-        event.target.files instanceof FileList ? event.target.files[0] : null;
+  // const onChangeImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   try {
+  //     const file: any =
+  //       event.target.files instanceof FileList ? event.target.files[0] : null;
 
-      setRespondImg(file);
+  //     setRespondImg(file);
 
-      const img: any = await resizeFile(file);
-      setIsImg(img);
-      setUrlImg(URL.createObjectURL(img));
-      console.log("success upload image!");
-    } catch (error) {
-      alert("파일 형식이 잘못되었습니다.");
-      console.log("file Type error", error);
-    }
-  };
+  //     const img: any = await resizeFile(file);
+  //     setIsImg(img);
+  //     setUrlImg(URL.createObjectURL(img));
+  //     console.log("success upload image!");
+  //   } catch (error) {
+  //     alert("파일 형식이 잘못되었습니다.");
+  //     console.log("file Type error", error);
+  //   }
+  // };
 
   return (
     <div className="">
       <CommonNavbar />
-      <div className="flex bg-[url('../public/assets/images/background-1.png')] w-full h-92">
+      <div className="flex bg-[url('../public/assets/images/background-1.png')] w-full commonHeight">
         <div
-          className="bg-white rounded-md my-16 mx-12 w-full flex flex-col justify-center"
-          style={{ height: 500 }}
+          className="bg-white rounded-md m-auto w-11/12 flex flex-col justify-center "
+          style={{ height: "80vh" }}
         >
-          <form>
-            <button className="flex justify-center border-2 rounded-lg mx-16 my-8 py-36">
-              <img src={urlImg}></img>
-              <input
-                type="file"
-                hidden
-                required
-                onChange={(e) => onChangeImage(e)}
-              />
-              {isImg ? null : (
-                <div className="flex flex-col justify-items-center">
-                  {" "}
-                  <CloudUploadIcon className="justify-items-center" />
-                  <div style={{ color: "#561D1D" }}>Click to Upload</div>
+          <div>
+            <div className="float-left w-7/12 m-auto">
+              {imageObject ? (
+                <div className="ml-20 ">
+                  <img
+                    className="w-full h-96 object-cover object-center aspect-square"
+                    alt="images"
+                    src={window.URL.createObjectURL(imageObject)}
+                    style={{ margin: "auto" }}
+                  ></img>
+                  {/* <div className="videoBtn flex justify-end pb-16">
+                    <span
+                      className="uploadButton flex mt-3 mr-3 "
+                      onClick={() => fileInput.current.click()}
+                    >
+                      <button>CHANGE</button>
+                    </span>
+                  </div> */}
+                </div>
+              ) : (
+                <div className="ml-20">
+                  <label
+                    htmlFor="dropzone-file"
+                    className="flex justify-center items-center h-96 w-full bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                  >
+                    <div className="flex flex-col justify-center items-center ">
+                      <svg
+                        aria-hidden="true"
+                        className="mb-3 w-10 h-10 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                        ></path>
+                      </svg>
+
+                      <p className="mb-2 w-80 text-sm text-gray-500 dark:text-gray-400">
+                        <span className="font-semibold">Click to upload</span>{" "}
+                        or drag and drop
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        MP4, AVI , WMV , MKV , MOV
+                      </p>
+                    </div>
+                    <input
+                      id="dropzone-file"
+                      className="cursor-pointer absolute block z-50 opacity-0"
+                      name="imageUpload"
+                      type="file"
+                      accept="image/*"
+                      onChange={saveFile}
+                    />
+                  </label>
                 </div>
               )}
-            </button>
-            <p className="text-center text-xl">이미지를 복원하시겠습니까?</p>
-            <FormButton text="네" height="h-10" width="w-20" color="#8F7C5A" />
-          </form>
+            </div>
+            <div className="flex h-96">
+              <div className="float-right m-auto">
+                <div className="m-auto">
+                  <p className="text-center text-3xl">
+                    이미지를 복원하시겠습니까?
+                  </p>
+                  <FormButton
+                    text="네"
+                    height="h-10"
+                    width="w-20"
+                    color="gray"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <input //uploadimage클릭 시 해당 input이 Click
+        ref={fileInput}
+        className="hidden"
+        name="imageUpload"
+        type="file"
+        accept="image/*"
+        onChange={saveFile}
+      />
     </div>
   );
 }
