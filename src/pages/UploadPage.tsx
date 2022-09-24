@@ -172,7 +172,7 @@ function UploadPage() {
                     <FormButton
                       text="네"
                       height="h-10"
-                      width="w-20"
+                      width="w-24"
                       color="gray"
                       onClick={requestTaskId}
                     />

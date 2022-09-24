@@ -3,6 +3,10 @@ import { useRef, useEffect, useCallback } from "react";
 const useScrollFadeIn: any = (duration = 1, delay = 0) => {
   const element = useRef();
 
+  /**
+   *
+   * @returns 적용할 애니메이션 효과
+   */
   const handleDirection = () => {
     return "translate3d(0, -50%, 0)";
   };

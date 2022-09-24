@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { ValidationAccessToken, RequestRefreshToken } from "./ManagementToken";
+import {
+  ValidationAccessToken,
+  RequestRefreshToken,
+} from "../hooks/ManagementToken";
 import { useSelector, useDispatch } from "react-redux";
 import { reset_auth, renew_auth } from "../redux/actions/AuthActions";
 import { reset_userInfo } from "../redux/actions/UserInfoActions";
