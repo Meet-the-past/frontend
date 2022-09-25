@@ -1,7 +1,7 @@
 export interface ImageDto {
   //결과 이미지 정보에 대한 DTO
   id: string;
-  after_url: string;
+  converted_url: string;
 }
 
 export interface ResultImageDto {

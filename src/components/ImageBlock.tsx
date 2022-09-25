@@ -65,7 +65,7 @@ function ImageBlock({ deleteImageFuc, imageInfo }: ImageBlockProps) {
       <img
         className="flex object-cover borderImage object-center aspect-square"
         alt="sample"
-        src={imageInfo.after_url}
+        src={imageInfo.converted_url}
       />
       <button onClick={confirmDelete}>
         <img
