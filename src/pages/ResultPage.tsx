@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CommonNavbar from "../components/CommonNavbar";
 import Loading from "../components/Loading";
-import Modal from "components/Modal";
 import { useNavigate } from "react-router-dom";
-import DownloadImageButton from "components/DownloadImageButton";
+import ImageModalScreen from "components/ImageModalScreen";
 
 import { authAxios } from "../utils/axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -33,6 +32,10 @@ function ResultPage() {
   const clickEvent = (url: string) => {
     setOpenModal(true);
     setSelectedImage(url);
+  };
+
+  const closeImageModal = () => {
+    setOpenModal(!openModal);
   };
 
   useEffect(() => {
@@ -98,21 +101,10 @@ function ResultPage() {
           ) : (
             <>
               {openModal && (
-                <Modal closeModal={() => setOpenModal(!openModal)}>
-                  <div className="mt-16">
-                    <div className="flex justify-center items-center">
-                      <img
-                        className="object-contain modalImageSize"
-                        alt="sample"
-                        src={selectedImage}
-                      />
-                    </div>
-                    <DownloadImageButton
-                      image_url={selectedImage}
-                      color="gray"
-                    />
-                  </div>
-                </Modal>
+                <ImageModalScreen
+                  imageInfo={selectedImage}
+                  closeFuc={closeImageModal}
+                />
               )}
 
               <div className="relative">
