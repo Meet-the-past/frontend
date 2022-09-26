@@ -3,6 +3,8 @@ import { useMediaQuery } from "react-responsive";
 
 import ImageBlock from "../components/ImageBlock";
 import Loading from "../components/Loading";
+import ImageModalScreen from "components/ImageModalScreen";
+
 import { authAxios } from "../utils/axios";
 
 import { ImageDto } from "../utils/types";
@@ -22,6 +24,9 @@ function HistoryImageList() {
   const indexOfFirstVideo = indexOfLastVideo - maxCountPerPage;
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  const [openModal, setOpenModal] = useState<boolean>(false); // 모달 활성화 여부
+  const [selectedImage, setSelectedImage] = useState<string>(""); // 모달창에 띄울 이미지 url
+
   /**
    * @name : Teawon
    * @function deleteImage: 특정 이미지를 삭제 (향후 axios를 통한 api연결 필요)
@@ -31,6 +36,15 @@ function HistoryImageList() {
     setImageList(
       imageList.filter((historyImg: ImageDto) => historyImg.id !== id)
     );
+  };
+
+  const closeImageModal = () => {
+    setOpenModal(!openModal);
+  };
+
+  const clickEvent = (url: string) => {
+    setOpenModal(true);
+    setSelectedImage(url);
   };
 
   /**
@@ -122,6 +136,12 @@ function HistoryImageList() {
         <Loading text="데이터를 불러오는 중 입니다" />
       ) : (
         <>
+          {openModal && (
+            <ImageModalScreen
+              imageInfo={selectedImage}
+              closeFuc={closeImageModal}
+            />
+          )}
           {imageList && imageList.length === 0 ? (
             <p className="text-2xl">
               "업로드한 이미지데이터가 존재하지 않습니다."
@@ -154,6 +174,7 @@ function HistoryImageList() {
                           key={img.id}
                           imageInfo={img}
                           deleteImageFuc={deleteImage}
+                          clickFun={() => clickEvent(img.converted_url)}
                         />
                       ))}
                   </div>

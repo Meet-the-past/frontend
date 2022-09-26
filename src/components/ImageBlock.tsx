@@ -17,9 +17,10 @@ import xButtonIcon from "../assets/images/xIcon.svg";
 interface ImageBlockProps {
   deleteImageFuc: (id: string) => void;
   imageInfo: ImageDto;
+  clickFun: any;
 }
 
-function ImageBlock({ deleteImageFuc, imageInfo }: ImageBlockProps) {
+function ImageBlock({ deleteImageFuc, imageInfo, clickFun }: ImageBlockProps) {
   const useConfirm = (message: string, onConfirm: any) => {
     if (!onConfirm || typeof onConfirm !== "function") {
       return;
@@ -61,9 +62,9 @@ function ImageBlock({ deleteImageFuc, imageInfo }: ImageBlockProps) {
   const confirmDelete = useConfirm("정말 삭제하시겠습니까?", deleteConfirm);
 
   return (
-    <div className="relative " key={imageInfo.id}>
+    <div className="relative" key={imageInfo.id} onClick={() => clickFun()}>
       <img
-        className="flex object-cover borderImage object-center aspect-square"
+        className="flex object-cover borderImage object-center aspect-square hover:scale-105"
         alt="sample"
         src={imageInfo.converted_url}
       />

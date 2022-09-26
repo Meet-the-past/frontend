@@ -5,8 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import Mainpage from "./pages/Mainpage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import ResultPage from "pages/ResultPage";
-import HistoryPage from "pages/HistoryPage";
+import ResultPage from "./pages/ResultPage";
+import HistoryPage from "./pages/HistoryPage";
 import AuthRoute from "./utils/AuthRoute";
 
 function App() {
