@@ -62,9 +62,10 @@ function ImageBlock({ deleteImageFuc, imageInfo, clickFun }: ImageBlockProps) {
   const confirmDelete = useConfirm("정말 삭제하시겠습니까?", deleteConfirm);
 
   return (
-    <div className="relative" key={imageInfo.id} onClick={() => clickFun()}>
+    <div className="relative" key={imageInfo.id}>
       <img
         className="flex object-cover borderImage object-center aspect-square hover:scale-105"
+        onClick={() => clickFun()}
         alt="sample"
         src={imageInfo.converted_url}
       />
