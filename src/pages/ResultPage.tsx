@@ -109,7 +109,7 @@ function ResultPage() {
 
               <div className="relative">
                 <div
-                  className="pr-32 float-left hover:scale-105"
+                  className="sm:float-left sm:pr-32 float-left hover:scale-105 float-center py-10"
                   onClick={() => clickEvent(imgData.origin_url)}
                 >
                   <img
@@ -119,7 +119,7 @@ function ResultPage() {
                   />
                 </div>
                 <div
-                  className="pl-32 float-right hover:scale-105"
+                  className="sm:pl-32 sm:float-right float-center hover:scale-105 py-10"
                   onClick={() => clickEvent(imgData.processed_url)}
                 >
                   <img

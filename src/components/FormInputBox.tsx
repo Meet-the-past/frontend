@@ -48,20 +48,19 @@ export default function FormInputBox({
   return (
     <div className="w-full flex flex-col justify-center items-center align-middle ">
       <div className="flex flex-wrap items-stretch w-3/5 border-black border-2 rounded-full m-5 p-2">
-        <div className="flex -mr-px justify-center w-15 ">
+        <div className="flex -mr-px justify-center w-full ">
           <span className="flex items-center leading-normal bg-white px-3 border-0 rounded rounded-r-none text-2xl text-gray-600">
             {<img src={icon} alt={placeholder}></img>}
           </span>
+          <input
+            type={type}
+            className="sm:pl-16 w-full flex-shrink flex-grow flex-auto relative leading-normal h-10 rounded placeholder-gray-400 object-left-top  pl-4"
+            placeholder={placeholder}
+            value={value}
+            onChange={handleTextChange}
+            onBlur={blurEvnet}
+          />
         </div>
-
-        <input
-          type={type}
-          className="flex-shrink flex-grow flex-auto relative leading-normal h-10  rounded placeholder-gray-400 object-left-top  pl-16"
-          placeholder={placeholder}
-          value={value}
-          onChange={handleTextChange}
-          onBlur={blurEvnet}
-        />
       </div>
       {message !== "" && (
         <FormAlertMessage message={message} isValid={isValid} />
