@@ -63,7 +63,7 @@ function Mainpage() {
       <div>
         <CommonNavbar />
         {scrollButtonStatus && (
-          <div className="fixed left-1/2 bottom-10 z-0 opacity-30 hover:opacity-100 ">
+          <div className="fixed left-1/2 bottom-10 z-50 opacity-30 hover:opacity-100 ">
             <button onClick={useMoveScrool}>
               <img
                 className="w-16 -translate-x-1/2"
