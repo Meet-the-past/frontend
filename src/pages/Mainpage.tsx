@@ -63,7 +63,7 @@ function Mainpage() {
       <div>
         <CommonNavbar />
         {scrollButtonStatus && (
-          <div className="fixed left-1/2 bottom-10 z-0 opacity-30 hover:opacity-100 ">
+          <div className="fixed left-1/2 bottom-10 z-50 opacity-30 hover:opacity-100 ">
             <button onClick={useMoveScrool}>
               <img
                 className="w-16 -translate-x-1/2"
@@ -147,7 +147,7 @@ function Mainpage() {
           className="flex  bg-cover mt-10 bg-[url('../public/assets/images/background-3.png')] w-full h-footer "
         >
           <div className="m-auto ">
-            <h1 className="text-5xl font-bold text-white drop-shadow-md">
+            <h1 className="sm:text-5xl text-3xl font-bold text-white drop-shadow-md">
               과거를 만나보시겠습니까?
             </h1>
             <div className="mt-5 flex items-center justify-center">

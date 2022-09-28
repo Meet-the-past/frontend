@@ -78,18 +78,18 @@ function UploadPage() {
       <div className="flex bg-[url('../public/assets/images/background-1.png')] w-full commonHeight">
         <div
           className="bg-white bg-opacity-80 rounded-md m-auto w-11/12 flex flex-col justify-center "
-          style={{ height: "80vh" }}
+          style={{ minHeight: "85vh" }}
         >
-          <div>
+          <div className="mt-16">
             <div
               className={
                 imageObject
-                  ? "transform -translate-y-10 duration-1000  w-7/12 m-auto"
-                  : "transform transition duration-1000  w-7/12 m-auto"
+                  ? "transform -translate-y-10 duration-1000  w-7/12 m-auto pb-16"
+                  : "transform transition duration-1000  w-7/12 m-auto pb-16"
               }
             >
               {imageObject ? (
-                <div className="ml-20">
+                <div className="">
                   <img
                     className="w-full h-96 object-cover object-center aspect-square border-2"
                     alt="images"
@@ -120,7 +120,7 @@ function UploadPage() {
                   </div>
                 </div>
               ) : (
-                <div className="ml-20">
+                <div>
                   <label
                     htmlFor="dropzone-file"
                     className="flex justify-center items-center h-96 w-full bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"

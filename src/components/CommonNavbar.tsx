@@ -107,7 +107,7 @@ function CommonNavbar() {
 
         {/* 모바일 Toggle메뉴 */}
         {menuToggle ? (
-          <div className="text-center bg-navbarColor  border-black opacity=80 md:hidden opacity-1">
+          <div className="text-center bg-navbarColor z-50 border-black opacity=80 md:hidden opacity-1">
             {isLogin ? (
               <>
                 {" "}
