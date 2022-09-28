@@ -109,21 +109,21 @@ function ResultPage() {
 
               <div className="relative">
                 <div
-                  className="sm:float-left sm:pr-32 float-left hover:scale-105 float-center py-28"
+                  className="sm:float-left sm:pr-32 float-left  float-center py-28"
                   onClick={() => clickEvent(imgData.origin_url)}
                 >
                   <img
-                    className="borderImage flex resultImageSize object-cover object-center aspect-square"
+                    className="hover:scale-105 borderImage flex resultImageSize object-cover object-center aspect-square"
                     alt="sample"
                     src={imgData.origin_url}
                   />
                 </div>
                 <div
-                  className="sm:pl-32 sm:float-right float-center hover:scale-105 py-4"
+                  className="sm:pl-32 sm:float-right float-center py-28"
                   onClick={() => clickEvent(imgData.processed_url)}
                 >
                   <img
-                    className="borderImage flex resultImageSize object-cover object-center aspect-square"
+                    className="hover:scale-105 borderImage flex resultImageSize object-cover object-center aspect-square"
                     alt="sample"
                     src={imgData.processed_url}
                   />
