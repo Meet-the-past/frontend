@@ -91,7 +91,7 @@ function UploadPage() {
               {imageObject ? (
                 <div className="">
                   <img
-                    className="w-full h-96 object-cover object-center aspect-square border-2"
+                    className="w-full h-96 object-contain object-center aspect-square border-2"
                     alt="images"
                     src={window.URL.createObjectURL(imageObject)}
                     style={{ margin: "auto" }}
